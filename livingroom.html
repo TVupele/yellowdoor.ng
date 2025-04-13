@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Living Room - Yellow Door Hotels</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    body {
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* Navbar - matches homepage */
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 5%;
+      z-index: 100;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: auto;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+    }
+    
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: #fabb00;
+    }
+    
+    .nav-links .active {
+      color: #fabb00;
+      font-weight: bold;
+    }
+    
+    /* Hero Section */
+    .living-room-hero {
+      position: relative;
+      height: 70vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .living-room-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      z-index: -1;
+    }
+    
+    .living-room-hero h1 {
+      color: #fff;
+      font-size: 4rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-top: 100px;
+    }
+    
+    /* Intro Section */
+    .intro-section {
+      display: flex;
+      align-items: center;
+      padding: 80px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 50px;
+    }
+    
+    .intro-text {
+      flex: 1;
+    }
+    
+    .intro-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    
+    .intro-text p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    
+    .intro-image {
+      flex: 1;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .intro-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .intro-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .btn-primary {
+      background-color: #fabb00;
+      color: #333;
+    }
+    
+    .btn-primary:hover {
+      background-color: #fabb00;
+      transform: translateY(-2px);
+    }
+    
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: white;
+    }
+    
+    .btn-whatsapp:hover {
+      background-color: #128C7E;
+      transform: translateY(-2px);
+    }
+    
+    /* Menu Section */
+    .menu-section {
+      padding: 80px 5%;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    
+    .menu-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #222;
+    }
+    
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .menu-item {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menu-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .menu-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .menu-item-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      padding: 15px;
+      text-align: left;
+    }
+    
+    .menu-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+    
+    .menu-item .order-btn {
+      display: inline-block;
+      background-color: #fabb00;
+      color: #333;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-top: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .menu-item .order-btn:hover {
+      background-color: #fabb00;
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: 80px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .feature-block {
+      display: flex;
+      align-items: center;
+      margin-bottom: 60px;
+      gap: 50px;
+    }
+    
+    .feature-block.reverse {
+      flex-direction: row-reverse;
+    }
+    
+    .feature-image {
+      flex: 1;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .feature-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    .feature-text {
+      flex: 1;
+    }
+    
+    .feature-text h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    
+    .feature-text p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    /* Why Choose Section */
+    .why-choose {
+      padding: 80px 5%;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    
+    .why-choose h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #222;
+    }
+    
+    .why-content {
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    
+    .why-content p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    /* Bar Section */
+    .bar-section {
+      padding: 80px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .bar-section h1 {
+      font-size: 3rem;
+      margin-bottom: 50px;
+      color: #222;
+    }
+    
+    .bar-images {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .bar-images img {
+      width: 50%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s;
+    }
+    
+    .bar-images img:hover {
+      transform: scale(1.02);
+    }
+    
+    .bar-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .bar-item {
+      text-align: center;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    
+    .bar-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .bar-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+    
+    .bar-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #222;
+    }
+    
+    .bar-item p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    
+    .order-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: #fabb00;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .order-btn:hover {
+      background-color: #fabb00;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Experience Section */
+    .experience-section {
+      padding: 80px 5%;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    
+    .experience-section h1 {
+      font-size: 3rem;
+      margin-bottom: 50px;
+      color: #222;
+    }
+    
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .experience-item {
+      height: 350px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .experience-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .experience-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .experience-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.3);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .experience-item:hover::after {
+      opacity: 1;
+    }
+    
+    /* Footer */
+footer {
+  background-color: #0056b3;
+  color: white;
+  padding: 60px 0 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 30px;
+}
+
+.footer-logo img {
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.footer-logo p {
+  max-width: 300px;
+  color: #ffffff;
+}
+
+.footer-contact {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.footer-contact h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #fabb00;
+}
+
+.footer-contact p {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.footer-contact a {
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #fabb00;
+}
+
+.footer-links a {
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fabb00;
+}
+
+.footer-subscribe {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 30px;
+}
+
+.footer-subscribe h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #fabb00;
+}
+
+.footer-subscribe p {
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.footer-subscribe form {
+  display: flex;
+  margin-top: 15px;
+}
+
+.footer-subscribe input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.footer-subscribe button {
+  background-color: #fabb00;
+  color: #333;
+  border: none;
+  padding: 0 15px;
+  border-radius: 0 4px 4px 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.footer-subscribe button:hover {
+  background-color: #fabb00;
+}
+
+.footer-bottom {
+  background-color: #004a99;
+  padding: 15px 0;
+}
+
+.footer-bottom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-legal a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.footer-legal a:hover {
+  color: #fabb00;
+}
+
+.footer-copyright {
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin: 0;
+}
+    
+    @media (max-width: 768px) {
+      .intro-section,
+      .feature-block,
+      .feature-block.reverse {
+        flex-direction: column;
+      }
+      
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .bar-images {
+        flex-direction: column;
+      }
+      
+      .bar-images img {
+        width: 100%;
+      }
+      
+      .bar-items {
+        grid-template-columns: 1fr;
+      }
+      
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .living-room-hero h1 {
+        font-size: 3rem;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links li {
+        margin-left: 15px;
+      }
+      
+      .living-room-hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="./img/lrlogo1.png" alt="Yellow Door Logo" class="logo-img">
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="livingroom.html" class="active">Living Room</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="living-room-hero">
+      <img src="./img/lr1.jpg" alt="Living Room at Yellow Door Hotels">
+    </div>
+  </header>
+
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="intro-text">
+      <h2>The Living Room</h2>
+      <p>Our Living Room is the heart of Yellow Door Hotels, offering a sophisticated yet comfortable space where guests can relax, dine, and socialize. With its elegant decor and warm ambiance, it's the perfect setting for both casual gatherings and special occasions.</p>
+      <p>Experience our signature blend of contemporary design and traditional hospitality in this unique social space.</p>
+      <div class="btn-group">
+        <a href="#menu-section" class="btn btn-primary">View our Menu</a>
+        <a href="https://wa.me/2348012345678" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Order on WhatsApp</a>
+      </div>
+    </div>
+    <div class="intro-image">
+      <img src="./img/lr2.jpg" alt="Living Room Interior">
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu-section" id="menu-section">
+    <h2>Our Menu</h2>
+    <div class="menu-grid">
+      <!-- Row 1 -->
+      <div class="menu-item">
+        <img src="./img/burger.jpg" alt="Burger">
+        <div class="menu-item-content">
+          <h3>Gourmet Burger</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Gourmet%20Burger" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/coconutrice.jpg" alt="Coconut Rice">
+        <div class="menu-item-content">
+          <h3>Coconut Rice</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Coconut%20Rice" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/housewings.jpg" alt="LR House Wings">
+        <div class="menu-item-content">
+          <h3>House Wings</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20House%20Wings" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/lopplatter.jpg" alt="LOP Platter">
+        <div class="menu-item-content">
+          <h3>LOP Platter</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20LOP%20Platter" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- Row 2 -->
+      <div class="menu-item">
+        <img src="./img/eforiro.jpg" alt="Efo Riro">
+        <div class="menu-item-content">
+          <h3>Efo Riro</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Efo%20Riro" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/seafoodokro.jpg" alt="Seafood Okro">
+        <div class="menu-item-content">
+          <h3>Seafood Okro</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Seafood%20Okro" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/ngbreakfast.jpg" alt="Nigerian Breakfast">
+        <div class="menu-item-content">
+          <h3>Nigerian Breakfast</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Nigerian%20Breakfast" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/seafoodplatter.jpg" alt="Seafood Platter">
+        <div class="menu-item-content">
+          <h3>Seafood Platter</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Seafood%20Platter" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- Row 3 -->
+      <div class="menu-item">
+        <img src="./img/seafoodpasta.jpg" alt="Seafood Pasta">
+        <div class="menu-item-content">
+          <h3>Seafood Pasta</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Seafood%20Pasta" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/springroll.jpg" alt="Summer Rolls">
+        <div class="menu-item-content">
+          <h3>Summer Rolls</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Summer%20Rolls" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/housesalad.jpg" alt="House Chicken Salad">
+        <div class="menu-item-content">
+          <h3>House Chicken Salad</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20House%20Salad" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/breakfast.jpg" alt="Breakfast">
+        <div class="menu-item-content">
+          <h3>Continental Breakfast</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Continental%20Breakfast" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- Row 4 -->
+      <div class="menu-item">
+        <img src="./img/avocado.jpg" alt="Avocado Toast">
+        <div class="menu-item-content">
+          <h3>Avocado Toast</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Avocado%20Toast" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/cakeslice.jpg" alt="Cake Slice">
+        <div class="menu-item-content">
+          <h3>Cake Slice</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Signature%20Cake" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/nativerice.jpg" alt="Native Rice">
+        <div class="menu-item-content">
+          <h3>LR Native Rice</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Native%20Rice" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="./img/samosa.jpg" alt="Samosa">
+        <div class="menu-item-content">
+          <h3>Samosa Platter</h3>
+          <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20the%20Samosa%20Platter" class="order-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="feature-block">
+      <div class="feature-image">
+        <img src="./img/privateroom3.jpg" alt="Private Room">
+      </div>
+      <div class="feature-text">
+        <h2>Private Room</h2>
+        <p>Our exclusive Private Room offers an intimate setting for special occasions, business meetings, or private gatherings. With capacity for up to 20 guests, this elegantly appointed space features custom lighting, premium sound system, and personalized service.</p>
+        <p>Enjoy a curated menu prepared by our executive chef, with wine pairing options available. The room can be configured to suit your event needs, from boardroom-style meetings to celebratory dinners.</p>
+      </div>
+    </div>
+    
+    <div class="feature-block reverse">
+      <div class="feature-image">
+        <img src="./img/wings.jpg" alt="Wings & Tails Night">
+      </div>
+      <div class="feature-text">
+        <h2>Wings & Tails Night</h2>
+        <p>Every Friday night, our Living Room transforms into Abuja's premier social destination with our famous Wings & Tails event. Enjoy our signature chicken wings with a selection of premium cocktails and spirits.</p>
+        <p>Featuring live DJ performances and a vibrant atmosphere, it's the perfect way to kick off your weekend. Reservations are recommended as this popular event often sells out.</p>
+      </div>
+    </div>
+    
+    <div class="feature-block">
+      <div class="feature-image">
+        <img src="./img/lr2.jpg" alt="Event and Restaurant Hall">
+      </div>
+      <div class="feature-text">
+        <h2>Event & Restaurant Hall</h2>
+        <p>Our versatile Event Hall can accommodate up to 50 guests for weddings, corporate events, and social gatherings. The space features state-of-the-art AV equipment, customizable lighting, and a dedicated event planning team.</p>
+        <p>During regular hours, the hall serves as our main restaurant area, offering a sophisticated dining experience with panoramic views of the city.</p>
+      </div>
+    </div>
+    
+    <div class="feature-block reverse">
+      <div class="feature-image">
+        <img src="./img/conferenceroom.jpg" alt="Conference Room">
+      </div>
+      <div class="feature-text">
+        <h2>Conference Room</h2>
+        <p>Our professional conference room is equipped with modern technology for productive business meetings and presentations. The space can accommodate up to 30 guests in theater-style seating or 15 in boardroom setup.</p>
+        <p>We provide all necessary amenities including high-speed WiFi, projection equipment, flip charts, and premium catering services to ensure your business event runs smoothly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Section -->
+  <section class="why-choose">
+    <h2>Why Choose Our Spaces</h2>
+    <div class="why-content">
+      <p>Our Living Room and event spaces are designed to provide exceptional experiences for every guest. From the carefully curated ambiance to the attentive service, every element is thoughtfully considered to ensure your comfort and satisfaction.</p>
+      <p>Capacity ranges from intimate 10-person gatherings in our Private Room to 150-guest events in our main hall. Our professional team can assist with all aspects of your booking, including menu selection, decor, and technical requirements.</p>
+    </div>
+  </section>
+
+  <!-- Bar Section -->
+  <section class="bar-section">
+    <h1>Our Outdoor Bar</h1>
+    <div class="bar-images">
+      <img src="./img/outdoorbar.jpg" alt="Outdoor Bar">
+      <img src="./img/lr1.jpg" alt="Outdoor Bar Seating">
+    </div>
+    
+    <div class="bar-items">
+      <div class="bar-item">
+        <img src="./img/lrcocktail.jpg" alt="Signature Cocktails">
+        <h3>Signature Cocktails</h3>
+        <p>Experience our mixologists' creative concoctions, blending premium spirits with fresh, local ingredients.</p>
+        <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20Signature%20Cocktails" class="order-btn">Order Now <i class="fab fa-whatsapp"></i></a>
+      </div>
+      
+      <div class="bar-item">
+        <img src="./img/juice.jpg" alt="Fresh Juices">
+        <h3>Fresh Juices</h3>
+        <p>Cold-pressed juices made daily from seasonal fruits, perfect for refreshing any time of day.</p>
+        <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20Fresh%20Juices" class="order-btn">Order Now <i class="fab fa-whatsapp"></i></a>
+      </div>
+      
+      <div class="bar-item">
+        <img src="./img/wings.jpg" alt="House Wings">
+        <h3>House Wings</h3>
+        <p>Our famous wings available in five signature sauces, from mild to extra spicy.</p>
+        <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20House%20Wings" class="order-btn">Order Now <i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="experience-section">
+    <h1>The Living Room Experience</h1>
+    <div class="experience-grid">
+      <div class="experience-item">
+        <img src="./img/experience1.jpg" alt="Evening Atmosphere">
+      </div>
+      <div class="experience-item">
+        <img src="./img/experience2.jpg" alt="Live Music">
+      </div>
+      <div class="experience-item">
+        <img src="./img/experience3.jpg" alt="Special Events">
+      </div>
+    </div>
+  </section>
+
+ <!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="./img/lrlogo1.png" alt="Yellow Door Logo">
+      <p>Experience luxury and comfort like never before at Yellow Door Hotels. Your perfect stay begins here.</p>
+    </div>
+    
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>No 19 Thaba Tseka Street, Ademola Adetokunbo, Wuse 2, Abuja</p>
+      <p><strong>Phone:</strong> <a href="tel:+2348012345678">+234 801 234 5678</a></p>
+      <p><strong>Email:</strong> <a href="mailto:hello@yellowdoor.ng">hello@yellowdoor.ng</a></p>
+      <div class="footer-links">
+        <a href="faq.html">FAQ</a> | 
+        <a href="terms.html">Terms and Conditions</a>
+      </div>
+    </div>
+    
+    <div class="footer-subscribe">
+      <h3>Subscribe</h3>
+      <p>Want to be notified about our services? Just sign up and we'll send you a notification by email.</p>
+      <form>
+        <input type="email" placeholder="Enter Your Email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <div class="footer-bottom-container">
+      <p class="footer-copyright">&copy; 2025 Yellow Door Hotels. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
