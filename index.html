@@ -45,33 +45,40 @@
     </div>
 
     <!-- Booking Form -->
-    <div class="booking-form-container">
-      <form class="booking-form">
-        <div class="form-group">
-          <label for="checkin">Check-in</label>
-          <input type="date" id="checkin" name="checkin" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="checkout">Check-out</label>
-          <input type="date" id="checkout" name="checkout" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="guests">Guests</label>
-          <select id="guests" name="guests" required>
-            <option value="1">1 Guest</option>
-            <option value="2" selected>2 Guests</option>
-            <option value="3">3 Guests</option>
-            <option value="4">4 Guests</option>
-            <option value="5+">5+ Guests</option>
-          </select>
-        </div>
-        
-        <button type="submit" class="book-now-btn">Book Now</button>
-      </form>
+<div class="booking-form-container">
+  <form class="booking-form" action="https://formspree.io/f/movebyvq" method="POST">
+    <input type="hidden" name="_subject" value="New Booking Request - Yellow Door Hotels">
+    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+    
+    <div class="form-group">
+      <label for="checkin">Check-in</label>
+      <input type="date" id="checkin" name="checkin" required>
     </div>
-  </div>
+    
+    <div class="form-group">
+      <label for="checkout">Check-out</label>
+      <input type="date" id="checkout" name="checkout" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="guests">Guests</label>
+      <select id="guests" name="guests" required>
+        <option value="1">1 Guest</option>
+        <option value="2" selected>2 Guests</option>
+        <option value="3">3 Guests</option>
+        <option value="4">4 Guests</option>
+        <option value="5+">5+ Guests</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    
+    <button type="submit" class="book-now-btn">Book Now</button>
+  </form>
+</div>
 
   <!-- About Section -->
   <section class="about-section">
