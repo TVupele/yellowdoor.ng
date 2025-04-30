@@ -1,4 +1,1096 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yellow Door Hotels</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    body {
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    /* Header Slider */
+    .header-slider {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
+    }
+    
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .slide.active {
+      opacity: 1;
+    }
+    
+    /* Navbar */
+    .navbar {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: all 0.3s ease;
+      background-color: none;
+    }
+      
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .logo-img {
+      height: 50px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-links {
+      display: flex;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+    }
+    
+    .nav-links a {
+      color: #fff;
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: gold;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: gold;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Content */
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      color: #ffc400;
+      z-index: 10;
+      max-width: 500px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+    
+    .hero-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px rgb(255, 187, 0);
+    }
+    
+    /* Booking Form */
+    .booking-form-container {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      max-width: 1100px;
+      z-index: 10;
+    }
+    
+    .booking-form {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      background-color: rgba(0,86,179,0.9);
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .form-group {
+      flex: 1;
+      margin: 0 10px;
+    }
+    
+    .form-group label {
+      display: block;
+      color: #fff;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      background-color: #fff;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255,215,0,0.3);
+    }
+    
+    /* Enhanced Room Type Selector */
+    select#room-type {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-size: 14px;
+      padding-right: 35px;
+    }
+    
+    optgroup {
+      font-weight: bold;
+      font-style: normal;
+      color: #333;
+      padding: 5px 0;
+    }
+    
+    optgroup option {
+      font-weight: normal;
+      padding: 8px 15px;
+    }
+    
+    .book-now-btn {
+      background-color: gold;
+      color: #333;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 10px;
+    }
+    
+    .book-now-btn:hover {
+      background-color: #e6c200;
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    
+    /* About Section */
+    .about-section {
+      background-color: #fff;
+      padding: 100px 0;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .about-content {
+      flex: 1;
+    }
+    
+    .about-content h2 {
+      color: gold;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+    
+    .about-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+      color: #222;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    
+    .about-content p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .about-buttons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .about-btn {
+      display: inline-block;
+      color: #333;
+      padding: 14px 30px;
+      border-radius: 5px;
+      font-weight: 700;
+      background-color: gold;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .about-btn:hover {
+      background-color: #e6c200;
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .phone-contact {
+      display: inline-flex;
+      align-items: center;
+      color: #333;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .phone-contact:hover {
+      color: #0056b3;
+    }
+    
+    .phone-contact i {
+      color: gold;
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .about-image {
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    
+    .about-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    /* Amenities Section */
+    .amenities-section {
+      background-color: #065bb6d7;
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .amenities-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .amenities-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+      font-weight: 700;
+    }
+    
+    .amenities-container h2 {
+      color: gold;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+    
+    .amenities-container p {
+      margin-bottom: 60px;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+    
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .amenity {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .amenity:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .amenity-img-container {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .amenity img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .amenity:hover img {
+      transform: scale(1.1);
+    }
+    
+    .amenity-content {
+      padding: 20px;
+    }
+    
+    .amenity h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+      color: gold;
+    }
+    
+    .amenity p {
+      color: rgb(255, 255, 255);
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    
+    /* Reviews Section */
+    .reviews-section {
+      background-image: url('./img/mainframe101.jpg');
+      padding: 120px 0;
+      position: relative;
+      color: #fff;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      
+    }
+    
+    .reviews-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+    
+    .reviews-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 1;
+    }
+    
+    .reviews-container h1 {
+      font-size: 1.8rem;
+      margin-bottom: 60px;
+      position: relative;
+      display: inline-block;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    
+    .reviews-container h1::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: gold;
+    }
+    
+    .review {
+      max-width: 800px;
+      margin: 0 auto;
+      display: none;
+      padding: 0 20px;
+    }
+    
+    .review.active {
+      display: block;
+      animation: 0.8s ease-in-out fadeIn;
+    }
+    
+    /* Reviews Section - Enhanced Animation */
+.review {
+  max-width: 800px;
+  margin: 0 auto;
+  display: none;
+  padding: 0 20px;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.review.active {
+  display: block;
+  opacity: 1;
+  position: relative;
+}
+
+    .review h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: gold;
+      font-weight: 600;
+    }
+    
+    .review p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      font-style: italic;
+    }
+    
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: gold;
+      font-size: 2.5rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,0.3);
+    }
+    
+    .arrow:hover {
+      color: #fff;
+      background-color: rgba(0,0,0,0.5);
+    }
+    
+    .prev {
+      left: 20px;
+    }
+    
+    .next {
+      right: 20px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #003366;
+      color: #fff;
+      padding: 80px 0 30px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    
+    .footer-logo,
+    .footer-contact,
+    .footer-subscribe {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .footer-logo img {
+      height: 50px;
+      margin-bottom: 20px;
+    }
+    
+    .footer-logo p {
+      max-width: 300px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+    }
+    
+    .footer-contact {
+      padding: 0 20px;
+    }
+    
+    .footer-contact h3,
+    .footer-subscribe h3 {
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      color: gold;
+      font-weight: 600;
+    }
+    
+    .footer-contact p {
+      margin-bottom: 15px;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .footer-contact i {
+      margin-right: 10px;
+      color: gold;
+      font-size: 1.1rem;
+      margin-top: 3px;
+    }
+    
+    .footer-links {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+    
+    .footer-contact a:hover,
+    .footer-links a:hover {
+      color: gold;
+    }
+    
+    .footer-subscribe form {
+      display: flex;
+      margin-top: 15px;
+    }
+    
+    .footer-subscribe input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      font-size: 0.95rem;
+    }
+    
+    .footer-subscribe button {
+      color: #333;
+      border: none;
+      padding: 0 20px;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-weight: 700;
+      background-color: gold;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-subscribe button:hover {
+      background-color: #e6c200;
+    }
+    
+    .footer-copyright {
+      width: 100%;
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 40px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .booking-form {
+        padding: 20px;
+      }
+      
+      .about-container {
+        gap: 30px;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .about-container {
+        flex-direction: column;
+      }
+      
+      .about-content {
+        margin-bottom: 40px;
+        text-align: center;
+      }
+      
+      .about-buttons {
+        justify-content: center;
+      }
+      
+      .booking-form {
+        flex-wrap: wrap;
+      }
+      
+      .form-group {
+        flex: 1 1 45%;
+        margin: 10px;
+      }
+      
+      .book-now-btn {
+        width: 100%;
+        margin: 10px 0 0;
+      }
+      
+      .amenity {
+        max-width: 350px;
+        margin: 0 auto;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 0;
+      }
+      
+      .nav-container {
+        flex-direction: column;
+      }
+      
+      .logo-container {
+        margin-bottom: 15px;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .nav-links li {
+        margin: 0 10px;
+      }
+      
+      .hero-content {
+        left: 5%;
+        max-width: 90%;
+      }
+      
+      .hero-content h2 {
+        font-size: 2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1rem;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .footer-contact {
+        padding: 0;
+      }
+      
+      .arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-links li {
+        margin: 5px 0;
+      }
+      
+      .hero-content h2 {
+        font-size: 1.8rem;
+      }
+      
+      .about-content h1,
+      .amenities-container h1 {
+        font-size: 2rem;
+      }
+      
+      .review p {
+        font-size: 1rem;
+      }
+      
+      .form-group {
+        flex: 1 1 100%;
+        margin: 8px 0;
+      }
+      
+      .booking-form {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Slider -->
+  <div class="header-slider">
+    <!-- Slides will be added dynamically via JavaScript -->
+    <div class="slide active" style="background-image: url('./img/mainframe101.jpg');"></div>
+    <div class="slide" style="background-image: url('./img/lr1.jpg');"></div>
+    <div class="slide" style="background-image: url('./img/lr2.jpg');"></div>
+    <div class="slide" style="background-image: url('./img/lr3.jpg');"></div>
+    <div class="slide" style="background-image: url('./img/outdoorbar.jpg');"></div>
+    <div class="slide" style="background-image: url('./img/guestparking.jpg');"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="./img/ydlogo1.png" alt="Yellow Door Logo" class="logo-img">
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="livingroom.html">Living Room</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <p>Experience the perfect blend of luxury and comfort at Yellow Door Hotels. Book your stay today and discover the difference.</p>
+      <h2>Design. Comfort. Service.</h2>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="booking-form-container">
+      <script src="https://formester.com/f/embed.js"></script>
+      <form id="fs-form" class="booking-form" action="https://ettsrrtb.formester.com/f/wd49W7fcX">
+        <!-- Hidden redirect field -->
+        <input type="hidden" name="_redirect" value="C:\Users\USER\Desktop\yellowdoor_website\thank-you.html">
+        
+        <div class="form-group">
+          <label for="checkin">Check-in</label>
+          <input type="date" id="checkin" name="checkin" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="checkout">Check-out</label>
+          <input type="date" id="checkout" name="checkout" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="room-type">Room Type</label>
+          <select id="room-type" name="room-type" required>
+            <option value="">Select Room Type</option>
+            <optgroup label="Studios">
+              <option value="mellow-studio">Mellow Studio</option>
+              <option value="jade-studio">Jade Studio</option>
+              <option value="canary-studio">Canary Studio</option>
+              <option value="sage-studio">Sage Studio</option>
+              <option value="ruby-studio">Ruby Studio</option>
+              <option value="premium-studio">Premium Studio</option>
+            </optgroup>
+            <optgroup label="Bedrooms">
+              <option value="slate-1bed">Slate 1 Bedroom</option>
+              <option value="amber-2bed">Amber 2 Bedroom</option>
+            </optgroup>
+            <optgroup label="Rooms by Number">
+              <option value="room-102">Room 102</option>
+              <option value="room-103">Room 103</option>
+              <option value="room-104">Room 104</option>
+              <option value="room-105">Room 105</option>
+              <option value="room-106">Room 106</option>
+              <option value="room-201">Room 201</option>
+              <option value="room-202">Room 202</option>
+              <option value="room-203">Room 203</option>
+              <option value="room-204">Room 204</option>
+              <option value="room-205">Room 205</option>
+              <option value="room-206">Room 206</option>
+              <option value="room-207">Room 207</option>
+            </optgroup>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="guests">Guests</label>
+          <select id="guests" name="guests" required>
+            <option value="1">1 Guest</option>
+            <option value="2" selected>2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5+">5+ Guests</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <button type="submit" class="book-now-btn">Book Now</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="about-container">
+      <div class="about-content">
+        <h2>ABOUT YELLOW DOOR HOTELS</h2>
+        <h1>From Abuja to the World</h1>
+        <p>Yellow Door Hotels is a premier hospitality brand offering exceptional service, luxurious accommodations, and unforgettable experiences. Our commitment to excellence has made us a favorite among travelers from around the globe.</p>
+        <div class="about-buttons">
+          <a href="about.html" class="about-btn">About Hotel</a>
+          <a href="tel:+2347089999907" class="phone-contact">
+            <i class="fas fa-phone"></i>
+            <span>+234 708 999 9907</span>
+          </a>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="./img/no1reception.jpg" alt="Yellow Door Hotel">
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities Section -->
+  <section class="amenities-section">
+    <div class="amenities-container">
+      <h2>HOTEL SERVICES</h2>
+      <h1>Our Amenities & Facilities</h1>
+      <p>Discover the exceptional services and facilities that make your stay at Yellow Door Hotels truly memorable.</p>
+      
+      <div class="amenities-grid">
+        <div class="amenity">
+          <div class="amenity-img-container">
+            <img src="./img/lounge.jpg" alt="Lounge">
+          </div>
+          <div class="amenity-content">
+            <h3>Lounge</h3>
+            <p>Relax in our elegant lounge, designed for your comfort and leisure.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-img-container">
+            <img src="./img/wifi.jpg" alt="WiFi Access">
+          </div>
+          <div class="amenity-content">
+            <h3>WiFi Access</h3>
+            <p>Stay connected with high-speed internet available throughout the hotel.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-img-container">
+            <img src="./img/guestparking.jpg" alt="Guest Parking">
+          </div>
+          <div class="amenity-content">
+            <h3>Guest Parking</h3>
+            <p>Enjoy secure and convenient parking facilities for all our guests.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-img-container">
+            <img src="./img/frontdesk.jpg" alt="24 Hours Front Desk">
+          </div>
+          <div class="amenity-content">
+            <h3>24 Hours Front Desk</h3>
+            <p>Our friendly staff is available around the clock to assist you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="reviews-section">
+    <div class="reviews-container">
+      <h1>Yellow Door Tales</h1>
+      
+      <div class="review active">
+        <h3>Ebi Brams</h3>
+        <p>"We had a fantastic stay at Yellowdoor Hotels. The location is perfect with access to the Living Room Cafe. The room was clean and well-maintained, offering all the amenities I needed for a comfortable visit.
+          What really sttod out was the amazing customer service. The Staff were incredibly friendly, helpful, and attentive, making sure our stay was stress-free and enjoyable. I highly recommend this establishment and I look forward to my next stay."</p>
+      </div>
+      
+      <div class="review">
+        <h3>Sike Agbana</h3>
+        <p>"We stayed at their Sage Hotels and my husband and I loved it. The staff are so kind and professional. We had complementary breakfast from their in-house restaurant and it was delicious. the hotel was clean and had everything we needed, including cookery, tableware, an iron and ironing board and even a yoga mat!
+          We were blown away and definitely see ourselves returning and making recommendations."</p>
+      </div>
+      
+      <div class="review">
+        <h3>Nzube Ufodike</h3>
+        <p>"Stayed at this lovely boutique hotel and was blown away by the exceptional customer service and attention to detail. Team were super professional, food was absolutely delicious, and the location was nice and quiet, while being just five minutes by taxi from the local clubs and nightlife.
+          The healthy bottled juices made on the premises were also very refreshing. Wholly recommend this little oasis in Abuja. thay you for having me and for adding to my very memorablestay in Abjua. "</p>
+      </div>
+      
+      <button class="arrow prev">&#10094;</button>
+      <button class="arrow next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="./img/ydlogo1.png" alt="Yellow Door Logo">
+        <p>Experience luxury and comfort like never before at Yellow Door Hotels. Your perfect stay begins here.</p>
+      </div>
+      
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> No 19 Thaba Tseka Street, Ademola Adetokunbo, Wuse 2, Abuja</p>
+        <p><i class="fas fa-phone"></i> <a href="tel:+2347089999907">+234 708 999 9907</a></p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:hello@yellowdoor.ng">hello@yellowdoor.ng</a></p>
+        <div class="footer-links">
+          <a href="faq.html">FAQ</a>
+          <a href="terms.html">Terms and Conditions</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+      
+      <div class="footer-subscribe">
+        <h3>Subscribe</h3>
+        <p>Want to be notified about our services? Just sign up and we'll send you a notification by email.</p>
+        <form>
+          <input type="email" placeholder="Enter Your Email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    
+    <p class="footer-copyright">&copy; 2025 Yellow Door Hotels. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Enhanced Image Slider with pause on hover
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    let slideInterval;
+    
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+    
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+    
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+    
+    function startSlideShow() {
+      slideInterval = setInterval(nextSlide, 8000);
+    }
+    
+    function pauseSlideShow() {
+      clearInterval(slideInterval);
+    }
+    
+    // Start slideshow and pause when hovering
+    startSlideShow();
+    document.querySelector('.header-slider').addEventListener('mouseenter', pauseSlideShow);
+    document.querySelector('.header-slider').addEventListener('mouseleave', startSlideShow);
+    
+    // Navbar scroll effect with debounce
+    let isScrolling;
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      window.clearTimeout(isScrolling);
+      isScrolling = setTimeout(function() {
+        if (window.scrollY > 100) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }, 100);
+    });
+    
+   
   // Review Slider Functionality
   document.addEventListener('DOMContentLoaded', function() {
     const reviews = document.querySelectorAll('.review');
@@ -56,4 +1148,78 @@
     showReview(0);
     startSlideShow();
   });
-</script>
+
+    
+    // Touch event handlers for swipe
+    reviewsContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      pauseReviewInterval();
+    });
+    
+    reviewsContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+      startReviewInterval();
+    });
+    
+    function handleSwipe() {
+      const threshold = 50;
+      if (touchEndX < touchStartX - threshold) {
+        nextReview();
+      } else if (touchEndX > touchStartX + threshold) {
+        prevReview();
+      }
+    }
+      
+    // Add event listeners to arrows
+    document.querySelector('.next').addEventListener('click', () => {
+      pauseReviewInterval();
+      nextReview();
+      startReviewInterval();
+    });
+    
+    document.querySelector('.prev').addEventListener('click', () => {
+      pauseReviewInterval();
+      prevReview();
+      startReviewInterval();
+    });
+    
+    // Form validation for booking form
+    const bookingForm = document.querySelector('.booking-form');
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', function(e) {
+        const checkin = document.getElementById('checkin');
+        const checkout = document.getElementById('checkout');
+        const roomType = document.getElementById('room-type');
+        
+        // Validate check-in date is not in the past
+        const today = new Date().toISOString().split('T')[0];
+        if (checkin.value < today) {
+          e.preventDefault();
+          alert('Check-in date cannot be in the past');
+          checkin.focus();
+          return false;
+        }
+        
+        // Validate check-out is after check-in
+        if (checkout.value <= checkin.value) {
+          e.preventDefault();
+          alert('Check-out date must be after check-in date');
+          checkout.focus();
+          return false;
+        }
+        
+        // Validate room type is selected
+        if (roomType.value === '') {
+          e.preventDefault();
+          alert('Please select a room type');
+          roomType.focus();
+          return false;
+        }
+        
+        return true;
+      });
+    }
+ </script>
+</body>
+</html>
