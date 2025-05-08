@@ -6,429 +6,776 @@
     <title>Rooms - Yellow Door Hotels</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        /* Navbar styles */
-        .navbar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 20px 5%;
-            background-color: rgba(0, 0, 0, 0.3);
-        }
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+body {
+    color: #333;
+    line-height: 1.6;
+}
 
-        .logo-img {
-            height: 50px;
-            width: auto;
-        }
+/* Navbar styles */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 5%;
+    background-color: rgba(0, 0, 0, 0.295);
+}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .nav-links li {
-            margin-left: 30px;
-        }
+.logo-img {
+    height: 50px;
+    width: auto;
+}
 
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
+.nav-links {
+    display: flex;
+    list-style: none;
+}
 
-        .nav-links a:hover {
-            color: #f8d56b;
-        }
+.nav-links li {
+    margin-left: 30px;
+}
 
-        /* Active link in navigation */
-        .nav-links .active {
-            color: #f8d56b;
-            font-weight: bold;
-        }
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s;
+}
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-            }
-            
-            .nav-links {
-                margin-top: 15px;
-            }
-            
-            .nav-links li {
-                margin-left: 15px;
-                margin-right: 15px;
-            }
-        }
-        
-        /* Hero section with mainframe image */
-        .hero {
-            position: relative;
-            height: 70vh;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .mainframe-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            text-align: center;
-        }
-        
-        .hero-content h1 {
-            font-size: 60px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
-        
-        /* Rooms section */
-        .rooms-section {
-            padding: 80px 5%;
-            background-color: #fff;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: #222;
-        }
-        
-        .rooms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .room-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-        
-        .room-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .room-slides {
-            width: 100%;
-            height: 250px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .room-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .room-slide.active {
-            opacity: 1;
-        }
-        
-        .room-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .room-prev {
-            left: 10px;
-        }
-        
-        .room-next {
-            right: 10px;
-        }
-        
-        .room-details {
-            padding: 20px;
-        }
-        
-        .room-name {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #444;
-        }
-        
-        .room-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .feature {
-            display: flex;
-            align-items: center;
-            color: #666;
-        }
-        
-        .feature i {
-            margin-right: 8px;
-            color: #f8d56b;
-        }
-        
-        .room-price {
-            font-size: 20px;
-            font-weight: bold;
-            color: #222;
-            margin-top: 15px;
-        }
-        
-        .price-period {
-            font-size: 14px;
-            font-weight: normal;
-            color: #666;
-        }
-        
-        /* Footer Styles */
-        footer {
-            background-color: #0056b3;
-            color: white;
-            padding: 60px 0 20px;
-        }
+.nav-links a:hover {
+    color: #f8d56b;
+}
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+/* Active link in navigation */
+.nav-links .active {
+    color: #f8d56b;
+    font-weight: bold;
+}
 
-        .footer-logo {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
-        }
+/* Hero Section with Mainframe Slider */
+.hero {
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    overflow: hidden;
+}
 
-        .footer-logo img {
-            height: 50px;
-            margin-bottom: 20px;
-        }
+.mainframe-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
-        .footer-logo p {
-            max-width: 300px;
-        }
+.mainframe-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
 
-        .footer-contact {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
+.mainframe-slide.active {
+    opacity: 1;
+}
 
-        .footer-contact h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #FFD700;
-        }
+.mainframe-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
 
-        .footer-contact p {
-            margin-bottom: 10px;
-            color: #fff;
-        }
+.mainframe-prev {
+    left: 20px;
+}
 
-        .footer-contact a {
-            transition: color 0.3s ease;
-            color: #fff;
-        }
+.mainframe-next {
+    right: 20px;
+}
 
-        .footer-contact a:hover {
-            color: #FFD700;
-        }
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 5;
+}
 
-        .footer-links {
-            margin-top: 15px;
-            color: #fff;
-        }
+.hero-content h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
 
-        .footer-links a {
-            margin-right: 10px;
-            transition: color 0.3s ease;
-            color: #fff;
-        }
+/* Featured Section */
+.featured-section {
+    padding: 60px 5%;
+    background-color: #f9f9f9;
+}
 
-        .footer-links a:hover {
-            color: #FFD700;
-        }
+.featured-slider {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
 
-        .footer-subscribe {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
-        }
+.featured-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
 
-        .footer-subscribe h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #FFD700;
-        }
+.featured-slide.active {
+    opacity: 1;
+}
 
-        .footer-subscribe form {
-            display: flex;
-            margin-top: 15px;
-        }
+.featured-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
 
-        .footer-subscribe input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 4px 0 0 4px;
-        }
+.featured-prev {
+    left: 20px;
+}
 
-        .footer-subscribe button {
-            background-color: #FFD700;
-            color: #333;
-            border: none;
-            padding: 0 15px;
-            border-radius: 0 4px 4px 0;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.featured-next {
+    right: 20px;
+}
 
-        .footer-subscribe button:hover {
-            background-color: #e6c200;
-        }
+/* Categories Section */
+.categories-section {
+    padding: 80px 5%;
+    background-color: #fff;
+}
 
-        .footer-copyright {
-            width: 100%;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
-        }
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #222;
+}
 
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #FFD700;
-            color: #333;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .scroll-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
+.category-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
 
-        /* Responsive Adjustments for Footer */
-        @media (max-width: 768px) {
-            .footer-container {
-                flex-direction: column;
-            }
-            
-            .footer-contact {
-                padding: 0;
-            }
-        }
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.category-slider {
+    width: 100%;
+    height: 250px;
+    position: relative;
+}
+
+.category-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.category-slide.active {
+    opacity: 1;
+}
+
+.category-card h3 {
+    text-align: center;
+    padding: 15px;
+    font-size: 22px;
+    color: #444;
+}
+
+.view-rooms-btn {
+    display: block;
+    width: 80%;
+    margin: 0 auto 20px;
+    padding: 10px;
+    background-color: #f8d56b;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view-rooms-btn:hover {
+    background-color: #e6c200;
+}
+
+/* All Rooms Section - Updated for expanded room options */
+.all-rooms-section {
+    padding: 80px 5%;
+    background-color: #f9f9f9;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #222;
+}
+
+.rooms-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.filter-btn.active {
+    background-color: #f8d56b;
+    border-color: #f8d56b;
+    color: #333;
+    font-weight: bold;
+}
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.room-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    background: #fff;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.room-slides {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.room-slide.active {
+    opacity: 1;
+}
+
+.room-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.room-nav:hover {
+    background-color: rgba(0,0,0,0.7);
+}
+
+.room-prev {
+    left: 10px;
+}
+
+.room-next {
+    right: 10px;
+}
+
+.room-details {
+    padding: 20px;
+}
+
+.room-name {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.room-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.feature i {
+    margin-right: 8px;
+    color: #f8d56b;
+}
+
+.room-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+    margin-top: 15px;
+}
+
+.price-period {
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #0056b3;
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-logo {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+}
+
+.footer-logo img {
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.footer-logo p {
+    max-width: 300px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+}
+
+.footer-contact {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.footer-contact h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #FFD700;
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    color: rgba(255,255,255,0.8);
+}
+
+.footer-contact a {
+    transition: color 0.3s ease;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+}
+
+.footer-contact a:hover {
+    color: #FFD700;
+}
+
+.footer-links {
+    margin-top: 15px;
+    color: #fff;
+}
+
+.footer-links a {
+    margin-right: 10px;
+    transition: color 0.3s ease;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #FFD700;
+}
+
+.footer-subscribe {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+}
+
+.footer-subscribe h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #FFD700;
+}
+
+.footer-subscribe p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.footer-subscribe form {
+    display: flex;
+    margin-top: 15px;
+}
+
+.footer-subscribe input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+}
+
+.footer-subscribe button {
+    background-color: #FFD700;
+    color: #333;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 4px 4px 0;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-subscribe button:hover {
+    background-color: #e6c200;
+}
+
+.footer-copyright {
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+}
+
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #FFD700;
+    color: #333;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    text-decoration: none;
+}
+
+.scroll-top:hover {
+    background-color: #e6c200;
+}
+
+.scroll-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        margin-top: 15px;
+    }
+    
+    .nav-links li {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    .featured-slider {
+        height: 350px;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rooms-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
+    
+    .footer-contact {
+        padding: 0;
+    }
+
+    .footer-subscribe form {
+        flex-direction: column;
+    }
+
+    .footer-subscribe input {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .footer-subscribe button {
+        border-radius: 4px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rooms-filter {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 80%;
+        text-align: center;
+    }
+}
     </style>
 </head>
 <body>
-   <!-- Navbar -->
-<header>
-    <nav class="navbar">
-        <div class="nav-container">
-          <div class="logo-container">
-            <a href="index.html">
-              <img src="./img/ydlogo1.png" alt="Yellow Door Logo" class="logo-img">
-            </a>
-          </div>
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="rooms.html" class="active">Rooms</a></li>
-            <li><a href="livingroom.html">Living Room</a></li>
-          </ul>
-        </div>
-      </nav>
-  
-  <!-- Hero Section with Mainframe Image -->
-  <section class="hero">
-    <img src="./img/amber3.jpg" alt="Yellow Door Hotels Rooms" class="mainframe-image">
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo-container">
+                    <a href="index.html">
+                        <img src="./img/ydprimarylogo.png" alt="Yellow Door Logo" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="rooms.html" class="active">Rooms</a></li>
+                    <li><a href="livingroom.html">Living Room</a></li>
+                </ul>
+            </div>
+        </nav>
     
-  </section>
-</header>
-    <!-- Rooms Section -->
-    <section class="rooms-section">
-        <h2 class="section-title">Rooms</h2>
+        <!-- Hero Section with Mainframe Slider -->
+        <section class="hero">
+            <div class="mainframe-slider">
+                <img src="./img/amber3.jpg" alt="Yellow Door Hotels" class="mainframe-slide active">
+                <img src="./img/amber2bedroom1.jpg" alt="Yellow Door Hotels" class="mainframe-slide">
+                <img src="./img/premiumstudio1.jpg" alt="Yellow Door Hotels" class="mainframe-slide">
+                <button class="mainframe-nav mainframe-prev">&#10094;</button>
+                <button class="mainframe-nav mainframe-next">&#10095;</button>
+            </div>
+        </section>
+    </header>
+
+    <!-- Featured Image Section -->
+    <section class="featured-section">
+        <div class="featured-slider">
+            <img src="./img/lounge.jpg" alt="Hotel Lobby" class="featured-slide active">
+            <img src="./img/room102.jpg" alt="Hotel Lounge" class="featured-slide">
+            <img src="./img/room1031.jpg" alt="Hotel Facilities" class="featured-slide">
+            <button class="featured-nav featured-prev">&#10094;</button>
+            <button class="featured-nav featured-next">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Room Categories Section -->
+    <section class="categories-section">
+        <h2 class="section-title">Room Categories</h2>
+        <div class="categories-grid">
+            <!-- Studio Category -->
+            <div class="category-card" data-category="studio">
+                <div class="category-slider">
+                    <img src="./img/canarystudio1.jpg" alt="Studio Room" class="category-slide active">
+                    <img src="./img/jadestudio1.jpg" alt="Studio Room" class="category-slide">
+                    <img src="./img/mellowstudio1.jpg" alt="Studio Room" class="category-slide">
+                </div>
+                <h3>Studio</h3>
+                <button class="view-rooms-btn">View Rooms</button>
+            </div>
+            
+            <!-- Premium Studio Category -->
+            <div class="category-card" data-category="premium">
+                <div class="category-slider">
+                    <img src="./img/premiumstudio1.jpg" alt="Premium Studio" class="category-slide active">
+                    <img src="./img/premiumstudio2.jpg" alt="Premium Studio" class="category-slide">
+                    <img src="./img/premiumstudio3.jpg" alt="Premium Studio" class="category-slide">
+                </div>
+                <h3>Premium Studio</h3>
+                <button class="view-rooms-btn">View Rooms</button>
+            </div>
+            
+            <!-- 1 Bedroom Category -->
+            <div class="category-card" data-category="one-bedroom">
+                <div class="category-slider">
+                    <img src="./img/slate1bedroom1.jpg" alt="1 Bedroom" class="category-slide active">
+                    <img src="./img/room105onebedroom1.jpg" alt="1 Bedroom" class="category-slide">
+                    <img src="./img/room201onebedroom1.jpg" alt="1 Bedroom" class="category-slide">
+                </div>
+                <h3>1 Bedroom</h3>
+                <button class="view-rooms-btn">View Rooms</button>
+            </div>
+            
+            <!-- 2 Bedroom Category -->
+            <div class="category-card" data-category="two-bedroom">
+                <div class="category-slider">
+                    <img src="./img/zen2bedroom1.jpg" alt="2 Bedroom" class="category-slide active">
+                    <img src="./img/amber2bedroom1.jpg" alt="2 Bedroom" class="category-slide">
+                    <img src="./img/amber2bedroom2.jpg" alt="2 Bedroom" class="category-slide">
+                </div>
+                <h3>2 Bedroom</h3>
+                <button class="view-rooms-btn">View Rooms</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Rooms Section -->
+    <section class="all-rooms-section">
+        <h2 class="section-title">All Rooms</h2>
+        <div class="rooms-filter">
+            <button class="filter-btn active" data-filter="all">All Rooms</button>
+            <button class="filter-btn" data-filter="studio">Studio</button>
+            <button class="filter-btn" data-filter="premium">Premium Studio</button>
+            <button class="filter-btn" data-filter="one-bedroom">1 Bedroom</button>
+            <button class="filter-btn" data-filter="two-bedroom">2 Bedroom</button>
+        </div>
         
         <div class="rooms-grid">
-            <!-- Studio Rooms -->
-            <div class="room-card">
+            <!-- All Studio Rooms -->
+            <div class="room-card" data-category="studio">
                 <div class="room-slides">
-                    <img src="./img/canarystudio1.jpg" alt="Canary Room" class="room-slide active">
-                    <img src="./img/canarystudio2.jpg" alt="Canary Room" class="room-slide">
-                    <img src="./img/canarystudio3.jpg" alt="Canary Room" class="room-slide">
+                    <img src="./img/canarystudio1.jpg" alt="Canary Studio" class="room-slide active">
+                    <img src="./img/canarystudio2.jpg" alt="Canary Studio" class="room-slide">
+                    <img src="./img/canarystudio3.jpg" alt="Canary Studio" class="room-slide">
                     <button class="room-nav room-prev">&#10094;</button>
                     <button class="room-nav room-next">&#10095;</button>
                 </div>
@@ -452,37 +799,7 @@
                 </div>
             </div>
             
-            <!-- Premium Studio -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/premiumstudio1.jpg" alt="Premium Studio" class="room-slide active">
-                    <img src="./img/premiumstudio2.jpg" alt="Premium Studio" class="room-slide">
-                    <img src="./img/premiumstudio3.jpg" alt="Premium Studio" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Premium Studio</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-ruler-combined"></i>
-                            <span>45 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">150k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Jade Studio -->
-            <div class="room-card">
+            <div class="room-card" data-category="studio">
                 <div class="room-slides">
                     <img src="./img/jadestudio1.jpg" alt="Jade Studio" class="room-slide active">
                     <img src="./img/jadestudio2.jpg" alt="Jade Studio" class="room-slide">
@@ -510,8 +827,7 @@
                 </div>
             </div>
             
-            <!-- Mellow Studio -->
-            <div class="room-card">
+            <div class="room-card" data-category="studio">
                 <div class="room-slides">
                     <img src="./img/mellowstudio1.jpg" alt="Mellow Studio" class="room-slide active">
                     <img src="./img/mellowstudio2.jpg" alt="Mellow Studio" class="room-slide">
@@ -528,7 +844,7 @@
                         </div>
                         <div class="feature">
                             <i class="fas fa-user-friends"></i>
-                            <span>4 Guests</span>
+                            <span>2 Guests</span>
                         </div>
                         <div class="feature">
                             <i class="fas fa-ruler-combined"></i>
@@ -539,8 +855,7 @@
                 </div>
             </div>
             
-            <!-- Ruby Studio -->
-            <div class="room-card">
+            <div class="room-card" data-category="studio">
                 <div class="room-slides">
                     <img src="./img/rubystudio1.jpg" alt="Ruby Studio" class="room-slide active">
                     <img src="./img/rubystudio2.jpg" alt="Ruby Studio" class="room-slide">
@@ -568,12 +883,11 @@
                 </div>
             </div>
             
-            <!-- Sage Studio -->
-            <div class="room-card">
+            <div class="room-card" data-category="studio">
                 <div class="room-slides">
-                    <img src="./img/sagestudio3.jpg" alt="Sage Studio" class="room-slide active">
+                    <img src="./img/sagestudio1.jpeg" alt="Sage Studio" class="room-slide active">
                     <img src="./img/sagestudio2.jpg" alt="Sage Studio" class="room-slide">
-                    <img src="./img/sagestudio1.jpeg" alt="Sage Studio" class="room-slide">
+                    <img src="./img/sagestudio3.jpg" alt="Sage Studio" class="room-slide">
                     <button class="room-nav room-prev">&#10094;</button>
                     <button class="room-nav room-next">&#10095;</button>
                 </div>
@@ -597,12 +911,69 @@
                 </div>
             </div>
             
-            <!-- Slate 1 Bedroom -->
-            <div class="room-card">
+            <!-- Premium Studio Rooms -->
+            <div class="room-card" data-category="premium">
+                <div class="room-slides">
+                    <img src="./img/premiumstudio1.jpg" alt="Premium Studio" class="room-slide active">
+                    <img src="./img/premiumstudio2.jpg" alt="Premium Studio" class="room-slide">
+                    <img src="./img/premiumstudio3.jpg" alt="Premium Studio" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Premium Studio</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>45 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">150k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="premium">
+                <div class="room-slides">
+                    <img src="./img/deluxestudio1.jpg" alt="Deluxe Studio" class="room-slide active">
+                    <img src="./img/deluxestudio2.jpg" alt="Deluxe Studio" class="room-slide">
+                    <img src="./img/deluxestudio3.jpg" alt="Deluxe Studio" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Deluxe Studio</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>45 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">150k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <!-- 1 Bedroom Rooms -->
+            <div class="room-card" data-category="one-bedroom">
                 <div class="room-slides">
                     <img src="./img/slate1bedroom1.jpg" alt="Slate 1 Bedroom" class="room-slide active">
-                    <img src="./img/slate1bedroom3.jpg" alt="Slate 1 Bedroom" class="room-slide">
                     <img src="./img/slate1bedroom2.jpg" alt="Slate 1 Bedroom" class="room-slide">
+                    <img src="./img/slate1bedroom3.jpg" alt="Slate 1 Bedroom" class="room-slide">
                     <button class="room-nav room-prev">&#10094;</button>
                     <button class="room-nav room-next">&#10095;</button>
                 </div>
@@ -619,19 +990,75 @@
                         </div>
                         <div class="feature">
                             <i class="fas fa-ruler-combined"></i>
-                            <span>45 m²</span>
+                            <span>55 m²</span>
                         </div>
                     </div>
-                    <div class="room-price">120k <span class="price-period">/ night</span></div>
+                    <div class="room-price">180k <span class="price-period">/ night</span></div>
                 </div>
             </div>
             
-            <!-- Zen 2 Bedroom -->
-            <div class="room-card">
+            <div class="room-card" data-category="one-bedroom">
                 <div class="room-slides">
-                    <img src="./img/zen2bedroom2.jpg" alt="Zen 2 Bedroom" class="room-slide active">
+                    <img src="./img/room105onebedroom1.jpg" alt="Room 105" class="room-slide active">
+                    <img src="./img/room105onebedroom2.jpg" alt="Room 105" class="room-slide">
+                    <img src="./img/room105onebedroom3.jpg" alt="Room 105" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 105</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>55 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">180k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="one-bedroom">
+                <div class="room-slides">
+                    <img src="./img/room201onebedroom1.jpg" alt="Room 201" class="room-slide active">
+                    <img src="./img/room201onebedroom2.jpg" alt="Room 201" class="room-slide">
+                    <img src="./img/room201onebedroom3.jpg" alt="Room 201" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 201</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>55 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">180k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <!-- 2 Bedroom Rooms -->
+            <div class="room-card" data-category="two-bedroom">
+                <div class="room-slides">
+                    <img src="./img/zen2bedroom1.jpg" alt="Zen 2 Bedroom" class="room-slide active">
+                    <img src="./img/zen2bedroom2.jpg" alt="Zen 2 Bedroom" class="room-slide">
                     <img src="./img/zen2bedroom3.jpg" alt="Zen 2 Bedroom" class="room-slide">
-                    <img src="./img/zen2bedroom1.jpg" alt="Zen 2 Bedroom" class="room-slide">
                     <button class="room-nav room-prev">&#10094;</button>
                     <button class="room-nav room-next">&#10095;</button>
                 </div>
@@ -648,19 +1075,18 @@
                         </div>
                         <div class="feature">
                             <i class="fas fa-ruler-combined"></i>
-                            <span>60 m²</span>
+                            <span>75 m²</span>
                         </div>
                     </div>
                     <div class="room-price">160k <span class="price-period">/ night</span></div>
                 </div>
             </div>
             
-            <!-- Amber 2 Bedroom -->
-            <div class="room-card">
+            <div class="room-card" data-category="two-bedroom">
                 <div class="room-slides">
-                    <img src="./img/amber2bedroom3.jpg" alt="Amber 2 Bedroom" class="room-slide active">
+                    <img src="./img/amber2bedroom1.jpg" alt="Amber 2 Bedroom" class="room-slide active">
                     <img src="./img/amber2bedroom2.jpg" alt="Amber 2 Bedroom" class="room-slide">
-                    <img src="./img/amber2bedroom1.jpg" alt="Amber 2 Bedroom" class="room-slide">
+                    <img src="./img/amber2bedroom3.jpg" alt="Amber 2 Bedroom" class="room-slide">
                     <button class="room-nav room-prev">&#10094;</button>
                     <button class="room-nav room-next">&#10095;</button>
                 </div>
@@ -677,389 +1103,39 @@
                         </div>
                         <div class="feature">
                             <i class="fas fa-ruler-combined"></i>
-                            <span>65 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">180k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 101 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/1room101.jpg" alt="Room 101" class="room-slide active">
-                    <img src="./img/2room101.jpg" alt="Room 101" class="room-slide">
-                    <img src="./img/3room101.jpg" alt="Room 101" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 101</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-ruler-combined"></i>
-                            <span>40 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 102 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room102.jpg" alt="Room 102" class="room-slide active">
-                    <img src="./img/room1022.jpg" alt="Room 102" class="room-slide">
-                    <img src="./img/room1023.jpg" alt="Room 102" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 102</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-ruler-combined"></i>
-                            <span>40 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 103 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room1031.jpg" alt="Room 103" class="room-slide active">
-                    <img src="./img/room1032.jpg" alt="Room 103" class="room-slide">
-                    <img src="./img/room1033.jpg" alt="Room 103" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 103</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-wheelchair"></i>
-                            <span>Room 103</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 104 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room1041.jpg" alt="Room 104" class="room-slide active">
-                    <img src="./img/room1042.jpg" alt="Room 104" class="room-slide">
-                    <img src="./img/room1043.jpg" alt="Room 104" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 104</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-ruler-combined"></i>
-                            <span>50 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 105 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room105onebedroom1.jpg" alt="Room 105" class="room-slide active">
-                    <img src="./img/room105onebedroom2.jpg" alt="Room 105" class="room-slide">
-                    <img src="./img/room105onebedroom3.jpg" alt="Room 105" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 105: 1 Bedroom with Private area</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-umbrella-beach"></i>
-                            <span>Private Area</span>
-                        </div>
-                    </div>
-                    <div class="room-price">180k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 106 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room106onebedroom1.jpg" alt="Room 106" class="room-slide active">
-                    <img src="./img/room106onebedroom2.jpg" alt="Room 106" class="room-slide">
-                    <img src="./img/room106onebedroom3.jpg" alt="Room 106" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 106 1 Bedroom</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-briefcase"></i>
-                            <span>Private Area</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k<span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 201 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room201onebedroom1.jpg" alt="Room 106 1 Bedroom" class="room-slide active">
-                    <img src="./img/room201onebedroom2.jpg" alt="Room 106 1 Bedroom" class="room-slide">
-                    <img src="./img/room201onebedroom3.jpg" alt="Room 106 1 Bedroom" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 106 1 Bedroom</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-leaf"></i>
-                            <span>Balcony Area</span>
-                        </div>
-                    </div>
-                    <div class="room-price">160k<span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 201 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room201onebedroom1.jpg" alt="Room 201" class="room-slide active">
-                    <img src="./img/room201onebedroom2.jpg" alt="Room 201" class="room-slide">
-                    <img src="./img/room201onebedroom3.jpg" alt="Room 201" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 201 One Bedroom</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-ruler-combined"></i>
-                            <span>50 m²</span>
+                            <span>75 m²</span>
                         </div>
                     </div>
                     <div class="room-price">160k <span class="price-period">/ night</span></div>
                 </div>
             </div>
             
-            <!-- Room 202 -->
-            <div class="room-card">
+            <div class="room-card" data-category="two-bedroom">
                 <div class="room-slides">
-                    <img src="./img/room2021.jpg" alt="Room 202" class="room-slide active">
-                    <img src="./img/room2022.jpg" alt="Room 202" class="room-slide">
-                    <img src="./img/room2023.jpg" alt="Room 202" class="room-slide">
+                    <img src="./img/royal2bedroom1.jpg" alt="Royal 2 Bedroom" class="room-slide active">
+                    <img src="./img/royal2bedroom2.jpg" alt="Royal 2 Bedroom" class="room-slide">
+                    <img src="./img/royal2bedroom3.jpg" alt="Royal 2 Bedroom" class="room-slide">
                     <button class="room-nav room-prev">&#10094;</button>
                     <button class="room-nav room-next">&#10095;</button>
                 </div>
                 <div class="room-details">
-                    <h3 class="room-name">Room 202</h3>
+                    <h3 class="room-name">Royal 2 Bedroom</h3>
                     <div class="room-features">
                         <div class="feature">
                             <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
+                            <span>2 Beds</span>
                         </div>
                         <div class="feature">
                             <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
+                            <span>4 Guests</span>
                         </div>
                         <div class="feature">
-                            <i class="fas fa-home"></i>
-                            <span>50 m²</span>
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>75 m²</span>
                         </div>
                     </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
+                    <div class="room-price">160k <span class="price-period">/ night</span></div>
                 </div>
-            </div>
-            
-            <!-- Room 203 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room2031.jpg" alt="Room 203" class="room-slide active">
-                    <img src="./img/room2032.jpg" alt="Room 203" class="room-slide">
-                    <img src="./img/room2033.jpg" alt="Room 203" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 203</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-palette"></i>
-                            <span>45 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 204 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room2041.jpg" alt="Room 204" class="room-slide active">
-                    <img src="./img/room2042.jpg" alt="Room 204" class="room-slide">
-                    <img src="./img/room2043.jpg" alt="Room 204" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 204</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>45 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 205 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room2051.jpg" alt="Room 205" class="room-slide active">
-                    <img src="./img/room2052.jpg" alt="Room 205" class="room-slide">
-                    <img src="./img/room2053.jpg" alt="Room 205" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 205</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-expand"></i>
-                            <span>50 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
-            
-            <!-- Room 206 -->
-            <div class="room-card">
-                <div class="room-slides">
-                    <img src="./img/room2061bedroom1.jpg" alt="Room 206 One Bedroom" class="room-slide active">
-                    <img src="./img/room2061bedroom2.jpg" alt="Room 206 One Bedroom" class="room-slide">
-                    <img src="./img/room2061bedroom3.jpg" alt="Room 206 One Bedroom" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Room 206 One Bedroom</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>1 Bed</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>2 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-utensils"></i>
-                            <span>50 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">110k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
             </div>
         </div>
     </section>
@@ -1068,14 +1144,14 @@
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="./img/ydlogo1.png" alt="Yellow Door Logo">
+                <img src="./img/ydprimarylogo.png" alt="Yellow Door Logo">
                 <p>Experience luxury and comfort like never before at Yellow Door Hotels. Your perfect stay begins here.</p>
             </div>
             
             <div class="footer-contact">
                 <h3>Contact Us</h3>
                 <p>No 19 Thaba Tseka Street, Ademola Adetokunbo, Wuse 2, Abuja</p>
-                <p><strong>Phone:</strong> <a href="tel:+2347089999907">+234 708 999 9907</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+2348012345678">+234 801 234 5678</a></p>
                 <p><strong>Email:</strong> <a href="mailto:hello@yellowdoor.ng">hello@yellowdoor.ng</a></p>
                 <div class="footer-links">
                     <a href="faq.html">FAQ</a> | 
@@ -1096,38 +1172,304 @@
         <p class="footer-copyright">&copy; 2025 Yellow Door Hotels. All rights reserved.</p>
         <a href="#" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
     </footer>
-
     <script>
-        // Room image slider functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const roomCards = document.querySelectorAll('.room-card');
-            
-            roomCards.forEach(card => {
-                const slides = card.querySelectorAll('.room-slide');
-                const prevBtn = card.querySelector('.room-prev');
-                const nextBtn = card.querySelector('.room-next');
-                let currentSlide = 0;
-                
-                function showSlide(n) {
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    currentSlide = (n + slides.length) % slides.length;
-                    slides[currentSlide].classList.add('active');
-                }
-                
-                prevBtn.addEventListener('click', () => {
-                    showSlide(currentSlide - 1);
-                });
-                
-                nextBtn.addEventListener('click', () => {
-                    showSlide(currentSlide + 1);
-                });
-                
-                // Auto slide change every 5 seconds
-                setInterval(() => {
-                    showSlide(currentSlide + 1);
-                }, 5000);
-            });
+        // Mainframe Slider Functionality
+const mainframeSlider = document.querySelector('.mainframe-slider');
+if (mainframeSlider) {
+    const mainframeSlides = mainframeSlider.querySelectorAll('.mainframe-slide');
+    const mainframePrev = mainframeSlider.querySelector('.mainframe-prev');
+    const mainframeNext = mainframeSlider.querySelector('.mainframe-next');
+    let currentMainframeSlide = 0;
+    let mainframeInterval;
+
+    function showMainframeSlide(n) {
+        mainframeSlides.forEach(slide => slide.classList.remove('active'));
+        currentMainframeSlide = (n + mainframeSlides.length) % mainframeSlides.length;
+        mainframeSlides[currentMainframeSlide].classList.add('active');
+    }
+
+    function nextMainframeSlide() {
+        showMainframeSlide(currentMainframeSlide + 1);
+    }
+
+    function startMainframeInterval() {
+        mainframeInterval = setInterval(nextMainframeSlide, 6000); // 6 seconds
+    }
+
+    mainframePrev.addEventListener('click', () => {
+        clearInterval(mainframeInterval);
+        showMainframeSlide(currentMainframeSlide - 1);
+        startMainframeInterval();
+    });
+
+    mainframeNext.addEventListener('click', () => {
+        clearInterval(mainframeInterval);
+        showMainframeSlide(currentMainframeSlide + 1);
+        startMainframeInterval();
+    });
+
+    // Start the interval
+    startMainframeInterval();
+}
+
+// Featured Slider Functionality
+const featuredSlider = document.querySelector('.featured-slider');
+if (featuredSlider) {
+    const featuredSlides = featuredSlider.querySelectorAll('.featured-slide');
+    const featuredPrev = featuredSlider.querySelector('.featured-prev');
+    const featuredNext = featuredSlider.querySelector('.featured-next');
+    let currentFeaturedSlide = 0;
+    let featuredInterval;
+
+    function showFeaturedSlide(n) {
+        featuredSlides.forEach(slide => slide.classList.remove('active'));
+        currentFeaturedSlide = (n + featuredSlides.length) % featuredSlides.length;
+        featuredSlides[currentFeaturedSlide].classList.add('active');
+    }
+
+    function nextFeaturedSlide() {
+        showFeaturedSlide(currentFeaturedSlide + 1);
+    }
+
+    function startFeaturedInterval() {
+        featuredInterval = setInterval(nextFeaturedSlide, 8000); // 8 seconds
+    }
+
+    featuredPrev.addEventListener('click', () => {
+        clearInterval(featuredInterval);
+        showFeaturedSlide(currentFeaturedSlide - 1);
+        startFeaturedInterval();
+    });
+
+    featuredNext.addEventListener('click', () => {
+        clearInterval(featuredInterval);
+        showFeaturedSlide(currentFeaturedSlide + 1);
+        startFeaturedInterval();
+    });
+
+    // Start the interval
+    startFeaturedInterval();
+}
+
+// Category Sliders Functionality
+const categoryCards = document.querySelectorAll('.category-card');
+categoryCards.forEach(card => {
+    const slider = card.querySelector('.category-slider');
+    const slides = slider.querySelectorAll('.category-slide');
+    let currentCategorySlide = 0;
+    let categoryInterval;
+
+    function showCategorySlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        currentCategorySlide = (n + slides.length) % slides.length;
+        slides[currentCategorySlide].classList.add('active');
+    }
+
+    function nextCategorySlide() {
+        showCategorySlide(currentCategorySlide + 1);
+    }
+
+    function startCategoryInterval() {
+        categoryInterval = setInterval(nextCategorySlide, 5000); // 5 seconds
+    }
+
+    // Start interval when mouse enters
+    card.addEventListener('mouseenter', () => {
+        startCategoryInterval();
+    });
+
+    // Pause interval when mouse leaves
+    card.addEventListener('mouseleave', () => {
+        clearInterval(categoryInterval);
+    });
+
+    // Show first slide initially
+    showCategorySlide(0);
+});
+
+// Room Filtering Functionality - Enhanced with smooth transitions
+const filterButtons = document.querySelectorAll('.filter-btn');
+const roomCards = document.querySelectorAll('.room-card');
+const roomsGrid = document.querySelector('.rooms-grid');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Get filter value
+        const filter = button.dataset.filter;
+        
+        // Add fade-out effect to all cards
+        roomCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         });
+
+        // After fade-out, filter and fade-in
+        setTimeout(() => {
+            roomCards.forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }, 300);
+    });
+});
+
+// View Rooms Buttons Functionality
+const viewRoomButtons = document.querySelectorAll('.view-rooms-btn');
+viewRoomButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const category = button.closest('.category-card').dataset.category;
+        
+        // Find the corresponding filter button and click it
+        filterButtons.forEach(btn => {
+            if (btn.dataset.filter === category) {
+                btn.click();
+                
+                // Smooth scroll to rooms section
+                const roomsSection = document.querySelector('.all-rooms-section');
+                const offset = 100; // Adjust this value as needed
+                const targetPosition = roomsSection.offsetTop - offset;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+
+// Room Sliders Functionality - Enhanced with touch support
+const roomCardsWithSliders = document.querySelectorAll('.room-card');
+roomCardsWithSliders.forEach(card => {
+    const slides = card.querySelectorAll('.room-slide');
+    const prevBtn = card.querySelector('.room-prev');
+    const nextBtn = card.querySelector('.room-next');
+    let currentRoomSlide = 0;
+    let roomInterval;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function showRoomSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        currentRoomSlide = (n + slides.length) % slides.length;
+        slides[currentRoomSlide].classList.add('active');
+    }
+
+    function nextRoomSlide() {
+        showRoomSlide(currentRoomSlide + 1);
+    }
+
+    function prevRoomSlide() {
+        showRoomSlide(currentRoomSlide - 1);
+    }
+
+    function startRoomInterval() {
+        roomInterval = setInterval(nextRoomSlide, 7000); // 7 seconds
+    }
+
+    // Touch event handlers for mobile swipe
+    const slider = card.querySelector('.room-slides');
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        clearInterval(roomInterval);
+    }, {passive: true});
+
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startRoomInterval();
+    }, {passive: true});
+
+    function handleSwipe() {
+        const difference = touchStartX - touchEndX;
+        if (difference > 50) { // Swipe left
+            nextRoomSlide();
+        } else if (difference < -50) { // Swipe right
+            prevRoomSlide();
+        }
+    }
+
+    // Start interval when mouse enters
+    card.addEventListener('mouseenter', () => {
+        startRoomInterval();
+    });
+
+    // Pause interval when mouse leaves
+    card.addEventListener('mouseleave', () => {
+        clearInterval(roomInterval);
+    });
+
+    // Navigation buttons
+    prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clearInterval(roomInterval);
+        prevRoomSlide();
+        startRoomInterval();
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clearInterval(roomInterval);
+        nextRoomSlide();
+        startRoomInterval();
+    });
+
+    // Show first slide initially
+    showRoomSlide(0);
+});
+
+// Scroll to Top Button
+const scrollTopBtn = document.querySelector('.scroll-top');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('active');
+    } else {
+        scrollTopBtn.classList.remove('active');
+    }
+});
+
+scrollTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Initialize all room cards as visible on page load
+document.addEventListener('DOMContentLoaded', () => {
+    roomCards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+    });
+});
+
+// Enhanced room card click functionality to navigate to booking
+roomCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+        // Don't navigate if clicking on navigation buttons
+        if (!e.target.classList.contains('room-nav') && 
+            !e.target.parentElement.classList.contains('room-nav')) {
+            const roomName = card.querySelector('.room-name').textContent;
+            // In a real implementation, this would navigate to a booking page
+            console.log(`Navigating to booking page for ${roomName}`);
+            // window.location.href = `book.html?room=${encodeURIComponent(roomName)}`;
+        }
+    });
+});
     </script>
 </body>
 </html>
