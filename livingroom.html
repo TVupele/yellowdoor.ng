@@ -6,7 +6,7 @@
   <title>Living Room - Yellow Door Hotels</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-   /* Base Styles */
+    /* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -17,17 +17,25 @@
 body {
   color: #333;
   line-height: 1.6;
+  background-color: #fff;
 }
 
-/* Navbar - matches homepage */
+/* Navbar */
 .navbar {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 5%;
+  padding: 15px 5%;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(46, 68, 116, 0.07);
+  padding: 10px 5%;
+  position: relative;
 }
 
 .nav-container {
@@ -41,6 +49,11 @@ body {
 .logo-img {
   height: 50px;
   width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
 }
 
 .nav-links {
@@ -57,11 +70,27 @@ body {
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  position: relative;
 }
 
 .nav-links a:hover {
   color: #fabb00;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #fabb00;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .nav-links .active {
@@ -72,7 +101,7 @@ body {
 /* Hero Section */
 .living-room-hero {
   position: relative;
-  height: 70vh;
+  height: 90vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -94,6 +123,7 @@ body {
   font-size: 4rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 100px;
+  animation: fadeInUp 1s ease;
 }
 
 /* Intro Section */
@@ -108,6 +138,7 @@ body {
 
 .intro-text {
   flex: 1;
+  animation: fadeInLeft 1s ease;
 }
 
 .intro-text h2 {
@@ -130,6 +161,7 @@ body {
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeInRight 1s ease;
 }
 
 .intro-image img {
@@ -144,46 +176,164 @@ body {
   transform: scale(1.03);
 }
 
-.btn-group {
-  display: flex;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 25px;
-  border-radius: 4px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.3s ease;
+/* Spaces Gallery Section */
+.spaces-gallery {
+  padding: 80px 5%;
   text-align: center;
+  background-color: #f9f9f9;
 }
 
-.btn-primary {
+.spaces-gallery h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #ffc400;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.spaces-slider {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Multi-image slider styles */
+.multi-image-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.multi-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.multi-image.active {
+  opacity: 1;
+}
+
+.multi-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.multi-image-nav {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.multi-image-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.multi-image-dot.active {
   background-color: #fabb00;
-  color: #333;
+  transform: scale(1.2);
 }
 
-.btn-primary:hover {
-  background-color: #fabb00;
-  transform: translateY(-2px);
+.space-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
-.btn-whatsapp {
-  background-color: #25D366;
+.space-slide.active {
+  opacity: 1;
+}
+
+.space-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.space-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   color: white;
+  padding: 30px;
+  text-align: left;
 }
 
-.btn-whatsapp:hover {
-  background-color: #128C7E;
-  transform: translateY(-2px);
+.space-info h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #fabb00;
+}
+
+.space-info p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.space-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 15px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.space-arrow:hover {
+  background: rgba(0,0,0,0.8);
+  color: #fabb00;
+}
+
+.prev-space {
+  left: 20px;
+}
+
+.next-space {
+  right: 20px;
 }
 
 /* Menu Section */
 .menu-section {
   padding: 80px 5%;
-  background-color: #f9f9f9;
+  background-color: #fff;
   text-align: center;
 }
 
@@ -191,7 +341,6 @@ body {
   font-size: 2.5rem;
   margin-bottom: 50px;
   color: #ffc400;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 .menu-grid {
@@ -208,6 +357,12 @@ body {
   position: relative;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .menu-item img {
@@ -242,78 +397,60 @@ body {
   display: inline-block;
   background-color: #fabb00;
   color: #333;
-  padding: 5px 10px;
+  padding: 8px 15px;
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin-top: 5px;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
 }
 
 .menu-item .order-btn:hover {
-  background-color: #fabb00;
+  background-color: #e0a800;
+  transform: translateY(-2px);
 }
 
-/* Features Section */
-.features-section {
+/* Food Video Section */
+.food-video-section {
   padding: 80px 5%;
-  max-width: 1200px;
-  margin: 0 auto;
+  background-color: #f9f9f9;
+  text-align: center;
 }
 
-.feature-block {
-  display: flex;
-  align-items: center;
-  margin-bottom: 60px;
-  gap: 50px;
-}
-
-.feature-block.reverse {
-  flex-direction: row-reverse;
-}
-
-.feature-image {
-  flex: 1;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.feature-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.5s;
-}
-
-.feature-image:hover img {
-  transform: scale(1.03);
-}
-
-.feature-text {
-  flex: 1;
-}
-
-.feature-text h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.food-video-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
   color: #ffc400;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
-.feature-text p {
+.food-video-section p {
   font-size: 1.1rem;
-  color: #555;
+  color: #000000;
+  max-width: 800px;
+  margin: 0 auto 40px;
   line-height: 1.8;
-  margin-bottom: 20px;
+}
+
+.video-container {
+  max-width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* Why Choose Section */
 .why-choose {
   padding: 80px 5%;
-  background-color: #f9f9f9;
+  background-color: #fff;
   text-align: center;
 }
 
@@ -321,7 +458,6 @@ body {
   font-size: 2.5rem;
   margin-bottom: 50px;
   color: #ffc400;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 .why-content {
@@ -336,58 +472,18 @@ body {
   margin-bottom: 20px;
 }
 
-/* Food Video Section */
-.food-video-section {
-  padding: 80px 5%;
-  background-color: #000000;
-  text-align: center;
-  color:#ffc400 ;
-}
-
-.food-video-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  color: #ffc400;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-}
-
-.food-video-section p {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  color: #000000;
-}
-
-.video-container {
-  max-width: 400px;
-  height: 500px;
-  margin: 0 auto;
-  background-color: black;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-
-
-.video-container video {
-  width: 50%;
-  height: 100%;
-  display: block;
-}
-
 /* Bar Section */
 .bar-section {
   padding: 80px 5%;
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  background-color: #f9f9f9;
 }
 
 .bar-section h1 {
   font-size: 3rem;
   margin-bottom: 50px;
-  color: #ffc400;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 .bar-section p {
@@ -426,15 +522,16 @@ body {
 
 .bar-item {
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
 }
 
 .bar-item:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .bar-item img {
@@ -458,35 +555,17 @@ body {
   margin-bottom: 15px;
 }
 
-.order-btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background-color: #fabb00;
-  color: #333;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 4px;
-  transition: all 0.3s;
-}
-
-.order-btn:hover {
-  background-color: #fabb00;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
 /* Experience Section */
 .experience-section {
   padding: 80px 5%;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 
 .experience-section h1 {
   font-size: 3rem;
   margin-bottom: 50px;
   color: #ffc400;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 .experience-grid {
@@ -503,6 +582,11 @@ body {
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   position: relative;
+  transition: all 0.3s ease;
+}
+
+.experience-item:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .experience-item img {
@@ -533,69 +617,56 @@ body {
   opacity: 1;
 }
 
- /* Reviews Section */
-    .reviews-section {
-      background-image: url('./img/mainframe101.jpg');
-      padding: 120px 0;
-      position: relative;
-      color: #fff;
-      text-align: center;
-      background-size: cover;
-      background-position: center;
-     
-    }
-    
-    .reviews-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.7);
-    }
-    
-    .reviews-container {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      z-index: 1;
-    }
-    
-    .reviews-container h1 {
-      font-size: 1.8rem;
-      margin-bottom: 60px;
-      position: relative;
-      display: inline-block;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    
-    .reviews-container h1::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background-color: gold;
-    }
-    
-    .review {
-      max-width: 800px;
-      margin: 0 auto;
-      display: none;
-      padding: 0 20px;
-    }
-    
-    .review.active {
-      display: block;
-      animation: 0.8s ease-in-out fadeIn;
-    }
-    
-    /* Reviews Section - Enhanced Animation */
+/* Reviews Section */
+.reviews-section {
+  background-image: url('./img/mainframe101.jpg');
+  padding: 120px 0;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: relative;
+}
+
+.reviews-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.reviews-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.reviews-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 60px;
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.reviews-container h1::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: gold;
+}
+
 .review {
   max-width: 800px;
   margin: 0 auto;
@@ -603,7 +674,7 @@ body {
   padding: 0 20px;
   opacity: 0;
   transition: opacity 0.8s ease-in-out;
-  position: absolute;
+  position: relative;
   left: 0;
   right: 0;
 }
@@ -614,58 +685,114 @@ body {
   position: relative;
 }
 
-/* Remove the @keyframes fadeIn since we're using opacity transition */
-    
-    .review h3 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      color: gold;
-      font-weight: 600;
-    }
-    
-    .review p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      font-style: italic;
-    }
-    
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: gold;
-      font-size: 2.5rem;
-      cursor: pointer;
-      z-index: 10;
-      transition: all 0.3s ease;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background-color: rgba(0,0,0,0.3);
-    }
-    
-    .arrow:hover {
-      color: #fff;
-      background-color: rgba(0,0,0,0.5);
-    }
-    
-    .prev {
-      left: 20px;
-    }
-    
-    .next {
-      right: 20px;
-    }
-    
+.review h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: gold;
+  font-weight: 600;
+}
+
+.review p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: gold;
+  font-size: 2.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.arrow:hover {
+  color: #fff;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #fabb00;
+  color: #333;
+}
+
+.btn-primary:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: white;
+}
+
+.btn-whatsapp:hover {
+  background-color: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.order-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #fabb00;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.order-btn:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
 
 /* Footer */
 footer {
-  background-color: #0056b3;
+  background-color: #284e75;
   color: white;
   padding: 60px 0 0;
 }
@@ -772,11 +899,11 @@ footer {
 }
 
 .footer-subscribe button:hover {
-  background-color: #fabb00;
+  background-color: #e0a800;
 }
 
 .footer-bottom {
-  background-color: #004a99;
+  background-color: #214469;
   padding: 15px 0;
 }
 
@@ -811,6 +938,64 @@ footer {
   margin: 0;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .bar-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .experience-item {
+    height: 500px;
+  }
+}
+
 @media (max-width: 768px) {
   .intro-section,
   .feature-block,
@@ -838,16 +1023,24 @@ footer {
     grid-template-columns: 1fr;
   }
   
-  .footer-container {
-    grid-template-columns: 1fr;
-  }
-  
   .living-room-hero h1 {
     font-size: 3rem;
   }
   
   .btn-group {
     flex-direction: column;
+  }
+  
+  .spaces-slider {
+    height: 400px;
+  }
+  
+  .space-info {
+    padding: 20px;
+  }
+  
+  .space-info h3 {
+    font-size: 1.5rem;
   }
 }
 
@@ -863,8 +1056,29 @@ footer {
   .living-room-hero h1 {
     font-size: 2.5rem;
   }
+  
+  .spaces-slider {
+    height: 300px;
+  }
+  
+  .space-info {
+    padding: 15px;
+  }
+  
+  .space-info h3 {
+    font-size: 1.2rem;
+  }
+  
+  .space-info p {
+    font-size: 0.9rem;
+  }
+  
+  .space-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
 }
-
   </style>
 </head>
 <body>
@@ -889,17 +1103,14 @@ footer {
     <!-- Hero Section -->
     <div class="living-room-hero">
       <img src="./img/lr1.jpg" alt="Living Room at Yellow Door Hotels">
-    </div>
+      </div>
   </header>
 
   <!-- Intro Section -->
   <section class="intro-section">
     <div class="intro-text">
-      <h2>The Living Room</h2>
-      <p>The Living Room is a beautifully designed multi-functional space that blends
-        comfort, style, and versatility. Whether you’re looking for a cozy spot to
-        unwind, a vibrant social hub, or a private venue for professional 
-        gatherings, The Living Room offers the perfect setting.</p>
+      <h2>Experience Comfort & Style</h2>
+      <p>The Living Room is a beautifully designed multi-functional space that blends comfort, style, and versatility. Whether you're looking for a cozy spot to unwind, a vibrant social hub, or a private venue for professional gatherings, The Living Room offers the perfect setting.</p>
       <div class="btn-group">
         <a href="#menu-section" class="btn btn-primary">View our Menu</a>
         <a href="https://wa.me/07089999907" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Order on WhatsApp</a>
@@ -907,6 +1118,56 @@ footer {
     </div>
     <div class="intro-image">
       <img src="./img/lr2.jpg" alt="Living Room Interior">
+    </div>
+  </section>
+
+  <!-- Spaces Gallery Section -->
+  <section class="spaces-gallery">
+    <h2>Our Unique Spaces</h2>
+    <div class="spaces-slider">
+      <div class="space-slide active" data-space="Private Room">
+        <img src="./img/privateroom3.jpg" alt="Private Room">
+        <div class="space-info">
+          <h3>Private Room</h3>
+          <p>An intimate setting for special occasions, business meetings, or private gatherings with capacity for up to 20 guests.</p>
+        </div>
+      </div>
+      <div class="space-slide" data-space="Event & Restaurant Hall">
+        <div class="multi-image-slider">
+          <div class="multi-image active">
+            <img src="./img/lr2.jpg" alt="Event & Restaurant Hall">
+          </div>
+          <div class="multi-image">
+            <img src="./img/eventhall.jpg" alt="Event & Restaurant Hall">
+          </div>
+          <div class="multi-image">
+            <img src="./img/eventhall1.jpg" alt="Event & Restaurant Hall">
+          </div>
+          <div class="multi-image">
+            <img src="./img/eventhall2.jpg" alt="Event & Restaurant Hall">
+          </div>
+        </div>
+        <div class="space-info">
+          <h3>Event & Restaurant Hall</h3>
+          <p>Ideal for birthdays, anniversaries, office training, and weddings with capacity for up to 80 guests.</p>
+        </div>
+      </div>
+      <div class="space-slide" data-space="Outdoor Bar">
+        <img src="./img/outdoorbar.jpg" alt="Outdoor Bar">
+        <div class="space-info">
+          <h3>Outdoor Bar</h3>
+          <p>A stylish open-air setting offering a rich selection of cocktails, mocktails, and premium wines.</p>
+        </div>
+      </div>
+      <div class="space-slide" data-space="Conference Room">
+        <img src="./img/conferenceroom.jpg" alt="Conference Room">
+        <div class="space-info">
+          <h3>Meeting Space</h3>
+          <p>Perfect for meetings, brainstorming, and remote work with all necessary amenities.</p>
+        </div>
+      </div>
+      <button class="space-arrow prev-space">&#10094;</button>
+      <button class="space-arrow next-space">&#10095;</button>
     </div>
   </section>
 
@@ -1036,55 +1297,15 @@ footer {
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features-section">
-      <div class="feature-block">
-      <div class="feature-image">
-        <img src="./img/privateroom3.jpg" alt="Private Room">
-      </div>
-      <div class="feature-text">
-        <h2><strong> Our Unique Spaces</strong></h2>
-        <h2>Private Room</h2>
-        <p>Our exclusive Private Room offers an intimate setting for special occasions, business meetings, or private gatherings. With capacity for up to 20 guests, this elegantly appointed space features custom lighting, premium sound system, and personalized service.</p>
-        <p>Enjoy a curated menu prepared by our executive chef, with wine pairing options available. The room can be configured to suit your event needs, from boardroom-style meetings to celebratory dinners.</p>
-      </div>
+  <!-- Food Video Section (moved immediately after menu) -->
+  <section class="food-video-section">
+      <div class="video-container">
+      <video controls autoplay muted loop>
+        <source src="./img/food-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
-    
-    <div class="feature-block reverse">
-      <div class="feature-image">
-        <img src="./img/guestparking.jpg" alt="Guest Parking">
-      </div>
-      <div class="feature-text">
-        <h2>Guest Parking Space</h2>
-        <p>Enjoy stress-free stays with our secure, well-lit parking lot—conveniently located and monitored for your peace of mind. No hassle, just seamless access to your YellowDoor experience.</p>
-      </div>
-    </div>
-    
-    <div class="feature-block">
-      <div class="feature-image">
-        <img src="./img/lr2.jpg" alt="Event and Restaurant Hall">
-      </div>
-      <div class="feature-text">
-        <h2>Event & Restaurant Hall</h2>
-        <p>Our event space is ideal for birthdays, anniversaries, office training, and weddings. 
-          It features a flexible layout, elegant décor, and an outdoor area. We offer catering, bar services, and dedicated staff for a seamless experience. 
-          The space accommodates up to 50 seated guests or 80 for cocktail-style gatherings. 
-          Advance booking (7 days minimum) is required, with custom packages available."</p>
-      </div>
-    </div>
-    
-    <div class="feature-block reverse">
-      <div class="feature-image">
-        <img src="./img/conferenceroom.jpg" alt="Conference Room">
-      </div>
-      <div class="feature-text">
-        <h2>Conference Room</h2>
-        <p>Our Conference Room is perfect for meetings, brainstorming, and remote work, 
-          offering a quiet and professional setting. Amenities include high-speed Wi-Fi, power outlets, comfortable seating, 
-          a projector, and a whiteboard. Open daily to Walk-ins but reservations are recommended for private use.
-          Flexible rental options include hourly, half-day, and full-day bookings.</p>
-      </div>
-    </div>
+    <a href="#menu-section" class="btn btn-primary">View Full Menu</a>
   </section>
 
   <!-- Why Choose Section -->
@@ -1096,36 +1317,10 @@ footer {
     </div>
   </section>
 
-    <!-- Food Video Section -->
-<section class="food-video-section" style="padding: 80px 5%; background-color: #fff; text-align: center;">
-  <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: #ffc400;">Flavors That Ignite the Senses</h2>
-  <p style="font-size: 1.1rem; color: #000000; max-width: 800px; margin: 0 auto 40px; line-height: 1.8;">
-    From crispy, saucy wings to rich, aromatic native dishes, every bite at The Living Room is a celebration of bold flavors.  
-    Dive into a world of perfectly grilled seafood, vibrant salads, and indulgent desserts—each dish crafted to delight.  
-    This is where great food, great vibes, and unforgettable moments come together.  
-  </p>
-  
-  <div class="video-container" style="max-width: 1000px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-    <video controls autoplay muted loop style="width: 100%; display: block;">
-      <source src="./img/food-video.mp4" type="video/mp4">
-      <source src="./img/food-video.webm" type="video/webm">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  
-  <div style="margin-top: 40px;">
-    <a href="#menu-section" class="btn btn-primary" style="display: inline-block; padding: 12px 25px; background-color: #fabb00; color: #333; text-decoration: none; font-weight: bold; border-radius: 4px; transition: all 0.3s;">
-      View Full Menu
-    </a>
-  </div>
-</section>
-
   <!-- Bar Section -->
   <section class="bar-section">
-    <h1><strong>Our Outdoor Bar</strong></h1>
-    <p>Our bar offers a rich selection of cocktails and mocktails in a stylish open-air setting.
-      Enjoy handcrafted drinks, premium wines, and different varities of natural drinks in a relaxed atmosphere. 
-      Comfortable seating and a curated menu make it the perfect spot to unwind.</p>
+    <h1>Our Outdoor Bar</h1>
+    <p>Our bar offers a rich selection of cocktails and mocktails in a stylish open-air setting. Enjoy handcrafted drinks, premium wines, and different varieties of natural drinks in a relaxed atmosphere.</p>
     <div class="bar-images">
       <img src="./img/outdoorbar.jpg" alt="Outdoor Bar">
       <img src="./img/lr1.jpg" alt="Outdoor Bar Seating">
@@ -1149,9 +1344,7 @@ footer {
       <div class="bar-item">
         <img src="./img/drinklr.jpg" alt="House Wings">
         <h3>Cocktails</h3>
-        <p>Sip on bold, balanced cocktails—classics with a twist and fresh signature mixes. Perfect with wings or on their own.
-
-          Let our bartenders shake up your night.</p>
+        <p>Sip on bold, balanced cocktails—classics with a twist and fresh signature mixes. Perfect with wings or on their own.</p>
         <a href="https://wa.me/2348012345678?text=I'd%20like%20to%20order%20House%20Wings" class="order-btn">Order Now <i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
@@ -1173,129 +1366,359 @@ footer {
     </div>
   </section>
 
-    <!-- Reviews Section -->
-    <section class="reviews-section">
-      <div class="reviews-container">
-        <h1>Living Room Tales</h1>
-        
-        <div class="review active">
-          <h3>Onoriode Ogidigben (Onos)</h3>
-          <p>"I'm obsessed with their food.There are so many great options and I really need to make more pictures. Lovely drinks too."</p>
-        </div>
-        
-        <div class="review">
-          <h3>Abubakar Sambo</h3>
-          <p>"The living room is an absolutely amazing place to sit, have meetings and eat. The service is top notch, the ambience is amazing and the food is second to none."</p>
-        </div>
-        
-        <div class="review">
-          <h3>Cynthiia E</h3>
-          <p>"I loveeeee the living room spicy Jollof riceand peppered chicken. Now that I think about it, this could be the reason I cannot sttand Jollof anywhwere else. The Living Room has definitely raised my standard. The ambience is amazing, there are games you can play with friends, the sofa is comfortable and clean. This is one of the places you need to go to for yourself. Also, if you are into swallow, I recommend the seafood Okro or Fisherman soup."</p>
-        </div>
-        
-        <button class="arrow prev">&#10094;</button>
-        <button class="arrow next">&#10095;</button>
+  <!-- Reviews Section -->
+  <section class="reviews-section">
+    <div class="reviews-container">
+      <h1>Living Room Tales</h1>
+      
+      <div class="review active">
+        <h3>Onoriode Ogidigben (Onos)</h3>
+        <p>"I'm obsessed with their food. There are so many great options and I really need to make more pictures. Lovely drinks too."</p>
       </div>
-    </section>
+      
+      <div class="review">
+        <h3>Abubakar Sambo</h3>
+        <p>"The living room is an absolutely amazing place to sit, have meetings and eat. The service is top notch, the ambience is amazing and the food is second to none."</p>
+      </div>
+      
+      <div class="review">
+        <h3>Cynthiia E</h3>
+        <p>"I loveeeee the living room spicy Jollof rice and peppered chicken. Now that I think about it, this could be the reason I cannot stand Jollof anywhere else. The Living Room has definitely raised my standard."</p>
+      </div>
+      
+      <button class="arrow prev">&#10094;</button>
+      <button class="arrow next">&#10095;</button>
+    </div>
+  </section>
 
- <!-- Footer -->
-<footer>
-  <div class="footer-container">
-    <div class="footer-logo">
-      <img src="./img/lrlogo1.png" alt="Yellow Door Logo">
-      <p>Experience luxury and comfort like never before at Yellow Door Hotels. Your perfect stay begins here.</p>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="./img/lrlogo1.png" alt="Yellow Door Logo">
+        <p>Experience luxury and comfort like never before at Yellow Door Hotels. Your perfect stay begins here.</p>
+      </div>
+      
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>No 19 Thaba Tseka Street, Ademola Adetokunbo, Wuse 2, Abuja</p>
+        <p><strong>Phone:</strong> <a href="tel:+2348012345678">+234 801 234 5678</a></p>
+        <p><strong>Email:</strong> <a href="mailto:hello@yellowdoor.ng">hello@yellowdoor.ng</a></p>
+        <div class="footer-links">
+          <a href="faq.html">FAQ</a> | 
+          <a href="terms.html">Terms and Conditions</a>
+        </div>
+      </div>
+      
+      <div class="footer-subscribe">
+        <h3>Subscribe</h3>
+        <p>Want to be notified about our services? Just sign up and we'll send you a notification by email.</p>
+        <form>
+          <input type="email" placeholder="Enter Your Email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
     </div>
     
-    <div class="footer-contact">
-      <h3>Contact Us</h3>
-      <p>No 19 Thaba Tseka Street, Ademola Adetokunbo, Wuse 2, Abuja</p>
-      <p><strong>Phone:</strong> <a href="tel:+2348012345678">+234 801 234 5678</a></p>
-      <p><strong>Email:</strong> <a href="mailto:hello@yellowdoor.ng">hello@yellowdoor.ng</a></p>
-      <div class="footer-links">
-        <a href="faq.html">FAQ</a> | 
-        <a href="terms.html">Terms and Conditions</a>
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p class="footer-copyright">&copy; 2025 Yellow Door Hotels. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
       </div>
     </div>
-    
-    <div class="footer-subscribe">
-      <h3>Subscribe</h3>
-      <p>Want to be notified about our services? Just sign up and we'll send you a notification by email.</p>
-      <form>
-        <input type="email" placeholder="Enter Your Email" required>
-        <button type="submit">Subscribe</button>
-      </form>
-    </div>
-  </div>
-  
-  <div class="footer-bottom">
-    <div class="footer-bottom-container">
-      <p class="footer-copyright">&copy; 2025 Yellow Door Hotels. All rights reserved.</p>
-      <div class="footer-legal">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-      </div>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // Review Slider Functionality
+    <script>
+  // Navbar Scroll Effect
   document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Spaces Gallery Slider
+    const spaceSlides = document.querySelectorAll('.space-slide');
+    const prevSpaceBtn = document.querySelector('.prev-space');
+    const nextSpaceBtn = document.querySelector('.next-space');
+    let currentSpaceIndex = 0;
+    let spaceInterval;
+
+    function showSpaceSlide(index) {
+      spaceSlides.forEach(slide => slide.classList.remove('active'));
+      
+      currentSpaceIndex = (index + spaceSlides.length) % spaceSlides.length;
+      spaceSlides[currentSpaceIndex].classList.add('active');
+    }
+
+    function nextSpaceSlide() {
+      showSpaceSlide(currentSpaceIndex + 1);
+    }
+
+    function prevSpaceSlide() {
+      showSpaceSlide(currentSpaceIndex - 1);
+    }
+
+    function startSpaceSlideShow() {
+      spaceInterval = setInterval(nextSpaceSlide, 10000); // 10 seconds
+    }
+
+    // Pause on hover
+    const spaceSlider = document.querySelector('.spaces-slider');
+    spaceSlider.addEventListener('mouseenter', () => clearInterval(spaceInterval));
+    spaceSlider.addEventListener('mouseleave', startSpaceSlideShow);
+
+    // Navigation controls
+    nextSpaceBtn.addEventListener('click', () => {
+      clearInterval(spaceInterval);
+      nextSpaceSlide();
+      startSpaceSlideShow();
+    });
+
+    prevSpaceBtn.addEventListener('click', () => {
+      clearInterval(spaceInterval);
+      prevSpaceSlide();
+      startSpaceSlideShow();
+    });
+
+    // Initialize spaces slider
+    showSpaceSlide(0);
+    startSpaceSlideShow();
+
+    // Multi-image slider functionality for Event Hall
+    function setupMultiImageSliders() {
+      const multiImageSliders = document.querySelectorAll('.multi-image-slider');
+      
+      multiImageSliders.forEach(slider => {
+        const images = slider.querySelectorAll('.multi-image');
+        let currentImageIndex = 0;
+        let interval;
+        
+        // Create navigation dots
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'multi-image-nav';
+        images.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.className = `multi-image-dot ${index === 0 ? 'active' : ''}`;
+          dot.addEventListener('click', () => {
+            showImage(index);
+            resetInterval();
+          });
+          dotsContainer.appendChild(dot);
+        });
+        slider.appendChild(dotsContainer);
+        
+        function showImage(index) {
+          images.forEach(img => img.classList.remove('active'));
+          const dots = slider.querySelectorAll('.multi-image-dot');
+          dots.forEach(dot => dot.classList.remove('active'));
+          
+          currentImageIndex = (index + images.length) % images.length;
+          images[currentImageIndex].classList.add('active');
+          dots[currentImageIndex].classList.add('active');
+        }
+        
+        function nextImage() {
+          showImage(currentImageIndex + 1);
+        }
+        
+        function startInterval() {
+          interval = setInterval(nextImage, 5000); // 5 seconds per image
+        }
+        
+        function resetInterval() {
+          clearInterval(interval);
+          startInterval();
+        }
+        
+        // Pause on hover
+        slider.addEventListener('mouseenter', () => clearInterval(interval));
+        slider.addEventListener('mouseleave', startInterval);
+        
+        // Initialize
+        showImage(0);
+        startInterval();
+      });
+    }
+
+    // Call this function after initializing the main spaces slider
+    setupMultiImageSliders();
+
+    // Reviews Slider
     const reviews = document.querySelectorAll('.review');
     const prevBtn = document.querySelector('.prev');
     const nextBtn = document.querySelector('.next');
     let currentReview = 0;
-    let slideInterval;
+    let reviewInterval;
 
-    // Function to show a specific review
     function showReview(index) {
       reviews.forEach(review => review.classList.remove('active'));
+      
       currentReview = (index + reviews.length) % reviews.length;
       reviews[currentReview].classList.add('active');
     }
 
-    // Function to go to next review
     function nextReview() {
       showReview(currentReview + 1);
     }
 
-    // Function to go to previous review
     function prevReview() {
       showReview(currentReview - 1);
     }
 
-    // Start automatic sliding
-    function startSlideShow() {
-      slideInterval = setInterval(nextReview, 10000); // 10 seconds
+    function startReviewSlideShow() {
+      reviewInterval = setInterval(nextReview, 8000); // 8 seconds
     }
-
-    // Pause automatic sliding
-    function pauseSlideShow() {
-      clearInterval(slideInterval);
-    }
-
-    // Event listeners for buttons
-    nextBtn.addEventListener('click', () => {
-      pauseSlideShow();
-      nextReview();
-      startSlideShow();
-    });
-
-    prevBtn.addEventListener('click', () => {
-      pauseSlideShow();
-      prevReview();
-      startSlideShow();
-    });
 
     // Pause on hover
     const reviewsContainer = document.querySelector('.reviews-container');
-    reviewsContainer.addEventListener('mouseenter', pauseSlideShow);
-    reviewsContainer.addEventListener('mouseleave', startSlideShow);
+    reviewsContainer.addEventListener('mouseenter', () => clearInterval(reviewInterval));
+    reviewsContainer.addEventListener('mouseleave', startReviewSlideShow);
 
-    // Initialize
+    // Navigation controls
+    nextBtn.addEventListener('click', () => {
+      clearInterval(reviewInterval);
+      nextReview();
+      startReviewSlideShow();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      clearInterval(reviewInterval);
+      prevReview();
+      startReviewSlideShow();
+    });
+
+    // Initialize reviews slider
     showReview(0);
-    startSlideShow();
+    startReviewSlideShow();
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Form submission handling
+    const subscribeForm = document.querySelector('.footer-subscribe form');
+    if (subscribeForm) {
+      subscribeForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = this.querySelector('input[type="email"]');
+        const email = emailInput.value.trim();
+        
+        if (email) {
+          // In a real implementation, you would send this to your server
+          alert('Thank you for subscribing! We\'ll keep you updated.');
+          emailInput.value = '';
+        } else {
+          alert('Please enter a valid email address.');
+        }
+      });
+    }
+
+    // WhatsApp order button enhancement
+    document.addEventListener('click', function(e) {
+      const orderBtn = e.target.closest('.order-btn');
+      if (orderBtn) {
+        orderBtn.innerHTML = 'Ordering... <i class="fas fa-spinner fa-spin"></i>';
+        
+        // Simulate order processing (in real app this would be actual WhatsApp API call)
+        setTimeout(() => {
+          orderBtn.innerHTML = 'Order Sent! <i class="fas fa-check"></i>';
+          setTimeout(() => {
+            orderBtn.innerHTML = 'Order Now <i class="fas fa-arrow-right"></i>';
+          }, 2000);
+        }, 1500);
+      }
+    });
+
+    // Lazy loading for images
+    if ('IntersectionObserver' in window) {
+      const lazyImages = document.querySelectorAll('img[data-src]');
+      
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      lazyImages.forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+
+    // Animation on scroll
+    function animateOnScroll() {
+      const elements = document.querySelectorAll(
+        '.intro-section, .menu-section, .food-video-section, .why-choose, .bar-section, .experience-section'
+      );
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    }
+
+    // Set initial state for animated elements
+    document.querySelectorAll(
+      '.intro-section, .menu-section, .food-video-section, .why-choose, .bar-section, .experience-section'
+    ).forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    // Initialize animations
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+
+    // Video autoplay handling for mobile devices
+    const video = document.querySelector('.video-container video');
+    if (video) {
+      // Ensure video plays inline on iOS
+      video.setAttribute('playsinline', '');
+      video.setAttribute('muted', '');
+      
+      // Attempt to autoplay (may be blocked by browser)
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Autoplay was prevented, show fallback
+          video.controls = true;
+        });
+      }
+    }
   });
-</script>
+  </script>
 </body>
 </html>
