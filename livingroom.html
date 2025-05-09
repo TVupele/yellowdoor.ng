@@ -145,7 +145,6 @@ body {
   font-size: 2.5rem;
   margin-bottom: 20px;
   color: #ffc400;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 .intro-text p {
@@ -187,7 +186,6 @@ body {
   font-size: 2.5rem;
   margin-bottom: 50px;
   color: #ffc400;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 .spaces-slider {
@@ -412,9 +410,10 @@ body {
 
 /* Food Video Section */
 .food-video-section {
-  padding: 80px 5%;
+  padding: 80px 0;
   background-color: #f9f9f9;
   text-align: center;
+  width: 100%;
 }
 
 .food-video-section h2 {
@@ -433,18 +432,17 @@ body {
 }
 
 .video-container {
-  max-width: 500px;
-  height: 500px;
+  width: 50%;
+  height: 90vh;
   margin: 0 auto;
-  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .video-container video {
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 /* Why Choose Section */
@@ -938,6 +936,22 @@ footer {
   margin: 0;
 }
 
+/* Social Links */
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #fabb00;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -1042,6 +1056,10 @@ footer {
   .space-info h3 {
     font-size: 1.5rem;
   }
+
+  .video-container {
+    height: 50vh;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1078,6 +1096,10 @@ footer {
     height: 40px;
     font-size: 1.5rem;
   }
+
+  .video-container {
+    height: 40vh;
+  }
 }
   </style>
 </head>
@@ -1088,7 +1110,7 @@ footer {
       <div class="nav-container">
         <div class="logo-container">
           <a href="index.html">
-            <img src="./img/lrlogo1.png" alt="Yellow Door Logo" class="logo-img">
+            <img src="./img/ydprimarylogo.png" alt="Yellow Door Logo" class="logo-img">
           </a>
         </div>
         <ul class="nav-links">
@@ -1126,7 +1148,14 @@ footer {
     <h2>Our Unique Spaces</h2>
     <div class="spaces-slider">
       <div class="space-slide active" data-space="Private Room">
-        <img src="./img/privateroom3.jpg" alt="Private Room">
+        <div class="multi-image-slider">
+          <div class="multi-image active">
+            <img src="./img/privateroom3.jpg" alt="Private Room">
+          </div>
+          <div class="multi-image">
+            <img src="./img/conferenceroom.jpg" alt="Meeting Space">
+          </div>
+        </div>
         <div class="space-info">
           <h3>Private Room</h3>
           <p>An intimate setting for special occasions, business meetings, or private gatherings with capacity for up to 20 guests.</p>
@@ -1153,17 +1182,17 @@ footer {
         </div>
       </div>
       <div class="space-slide" data-space="Outdoor Bar">
-        <img src="./img/outdoorbar.jpg" alt="Outdoor Bar">
+        <div class="multi-image-slider">
+          <div class="multi-image active">
+            <img src="./img/outdoorbar.jpg" alt="Outdoor Bar">
+          </div>
+          <div class="multi-image">
+            <img src="./img/lr1.jpg" alt="Outdoor Bar Seating">
+          </div>
+        </div>
         <div class="space-info">
           <h3>Outdoor Bar</h3>
           <p>A stylish open-air setting offering a rich selection of cocktails, mocktails, and premium wines.</p>
-        </div>
-      </div>
-      <div class="space-slide" data-space="Conference Room">
-        <img src="./img/conferenceroom.jpg" alt="Conference Room">
-        <div class="space-info">
-          <h3>Meeting Space</h3>
-          <p>Perfect for meetings, brainstorming, and remote work with all necessary amenities.</p>
         </div>
       </div>
       <button class="space-arrow prev-space">&#10094;</button>
@@ -1395,18 +1424,23 @@ footer {
   <footer>
     <div class="footer-container">
       <div class="footer-logo">
-        <img src="./img/lrlogo1.png" alt="Yellow Door Logo">
+        <img src="./img/ydprimarylogo.png" alt="Yellow Door Logo">
         <p>Experience luxury and comfort like never before at Yellow Door Hotels. Your perfect stay begins here.</p>
       </div>
       
       <div class="footer-contact">
         <h3>Contact Us</h3>
         <p>No 19 Thaba Tseka Street, Ademola Adetokunbo, Wuse 2, Abuja</p>
-        <p><strong>Phone:</strong> <a href="tel:+2348012345678">+234 801 234 5678</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+2347089999970">+234 708 999 9970</a></p>
         <p><strong>Email:</strong> <a href="mailto:hello@yellowdoor.ng">hello@yellowdoor.ng</a></p>
         <div class="footer-links">
           <a href="faq.html">FAQ</a> | 
-          <a href="terms.html">Terms and Conditions</a>
+          <a href="https://docs.google.com/document/d/1aODb-UjxWG7h73SNSpduYQKwRmgYyU1i8cKL04X5rwM/edit?usp=drivesdk">Terms and Conditions</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="social-links" style="margin-top: 15px;">
+          <a href="https://instagram.com/yellowdoorhotels" target="_blank" style="color: #fff; font-size: 1.5rem; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/2347089999970" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       
@@ -1430,78 +1464,88 @@ footer {
       </div>
     </div>
   </footer>
+  <script>
+    // Navbar Scroll Effect
+document.addEventListener('DOMContentLoaded', function() {
+  const navbar = document.querySelector('.navbar');
+  
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
 
-    <script>
-  // Navbar Scroll Effect
-  document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.querySelector('.navbar');
+  // Spaces Gallery Slider
+  const spaceSlides = document.querySelectorAll('.space-slide');
+  const prevSpaceBtn = document.querySelector('.prev-space');
+  const nextSpaceBtn = document.querySelector('.next-space');
+  let currentSpaceIndex = 0;
+  let spaceInterval;
+
+  function showSpaceSlide(index) {
+    spaceSlides.forEach(slide => slide.classList.remove('active'));
     
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    // Spaces Gallery Slider
-    const spaceSlides = document.querySelectorAll('.space-slide');
-    const prevSpaceBtn = document.querySelector('.prev-space');
-    const nextSpaceBtn = document.querySelector('.next-space');
-    let currentSpaceIndex = 0;
-    let spaceInterval;
-
-    function showSpaceSlide(index) {
-      spaceSlides.forEach(slide => slide.classList.remove('active'));
-      
-      currentSpaceIndex = (index + spaceSlides.length) % spaceSlides.length;
-      spaceSlides[currentSpaceIndex].classList.add('active');
+    currentSpaceIndex = (index + spaceSlides.length) % spaceSlides.length;
+    spaceSlides[currentSpaceIndex].classList.add('active');
+    
+    // Reset the multi-image slider for the newly active space slide
+    const activeMultiSlider = spaceSlides[currentSpaceIndex].querySelector('.multi-image-slider');
+    if (activeMultiSlider) {
+      const images = activeMultiSlider.querySelectorAll('.multi-image');
+      images.forEach((img, i) => {
+        img.classList.remove('active');
+        if (i === 0) img.classList.add('active');
+      });
     }
+  }
 
-    function nextSpaceSlide() {
-      showSpaceSlide(currentSpaceIndex + 1);
-    }
+  function nextSpaceSlide() {
+    showSpaceSlide(currentSpaceIndex + 1);
+  }
 
-    function prevSpaceSlide() {
-      showSpaceSlide(currentSpaceIndex - 1);
-    }
+  function prevSpaceSlide() {
+    showSpaceSlide(currentSpaceIndex - 1);
+  }
 
-    function startSpaceSlideShow() {
-      spaceInterval = setInterval(nextSpaceSlide, 10000); // 10 seconds
-    }
+  function startSpaceSlideShow() {
+    spaceInterval = setInterval(nextSpaceSlide, 10000); // 10 seconds
+  }
 
-    // Pause on hover
-    const spaceSlider = document.querySelector('.spaces-slider');
-    spaceSlider.addEventListener('mouseenter', () => clearInterval(spaceInterval));
-    spaceSlider.addEventListener('mouseleave', startSpaceSlideShow);
+  // Pause on hover
+  const spaceSlider = document.querySelector('.spaces-slider');
+  spaceSlider.addEventListener('mouseenter', () => clearInterval(spaceInterval));
+  spaceSlider.addEventListener('mouseleave', startSpaceSlideShow);
 
-    // Navigation controls
-    nextSpaceBtn.addEventListener('click', () => {
-      clearInterval(spaceInterval);
-      nextSpaceSlide();
-      startSpaceSlideShow();
-    });
-
-    prevSpaceBtn.addEventListener('click', () => {
-      clearInterval(spaceInterval);
-      prevSpaceSlide();
-      startSpaceSlideShow();
-    });
-
-    // Initialize spaces slider
-    showSpaceSlide(0);
+  // Navigation controls
+  nextSpaceBtn.addEventListener('click', () => {
+    clearInterval(spaceInterval);
+    nextSpaceSlide();
     startSpaceSlideShow();
+  });
 
-    // Multi-image slider functionality for Event Hall
-    function setupMultiImageSliders() {
-      const multiImageSliders = document.querySelectorAll('.multi-image-slider');
+  prevSpaceBtn.addEventListener('click', () => {
+    clearInterval(spaceInterval);
+    prevSpaceSlide();
+    startSpaceSlideShow();
+  });
+
+  // Initialize spaces slider
+  showSpaceSlide(0);
+  startSpaceSlideShow();
+
+  // Multi-image slider functionality for all sections
+  function setupMultiImageSliders() {
+    const multiImageSliders = document.querySelectorAll('.multi-image-slider');
+    
+    multiImageSliders.forEach(slider => {
+      const images = slider.querySelectorAll('.multi-image');
+      let currentImageIndex = 0;
+      let interval;
       
-      multiImageSliders.forEach(slider => {
-        const images = slider.querySelectorAll('.multi-image');
-        let currentImageIndex = 0;
-        let interval;
-        
-        // Create navigation dots
+      // Create navigation dots if they don't exist
+      if (!slider.querySelector('.multi-image-nav')) {
         const dotsContainer = document.createElement('div');
         dotsContainer.className = 'multi-image-nav';
         images.forEach((_, index) => {
@@ -1514,211 +1558,212 @@ footer {
           dotsContainer.appendChild(dot);
         });
         slider.appendChild(dotsContainer);
+      }
+      
+      function showImage(index) {
+        images.forEach(img => img.classList.remove('active'));
+        const dots = slider.querySelectorAll('.multi-image-dot');
+        dots.forEach(dot => dot.classList.remove('active'));
         
-        function showImage(index) {
-          images.forEach(img => img.classList.remove('active'));
-          const dots = slider.querySelectorAll('.multi-image-dot');
-          dots.forEach(dot => dot.classList.remove('active'));
-          
-          currentImageIndex = (index + images.length) % images.length;
-          images[currentImageIndex].classList.add('active');
-          dots[currentImageIndex].classList.add('active');
-        }
-        
-        function nextImage() {
-          showImage(currentImageIndex + 1);
-        }
-        
-        function startInterval() {
-          interval = setInterval(nextImage, 5000); // 5 seconds per image
-        }
-        
-        function resetInterval() {
-          clearInterval(interval);
-          startInterval();
-        }
-        
-        // Pause on hover
-        slider.addEventListener('mouseenter', () => clearInterval(interval));
-        slider.addEventListener('mouseleave', startInterval);
-        
-        // Initialize
-        showImage(0);
+        currentImageIndex = (index + images.length) % images.length;
+        images[currentImageIndex].classList.add('active');
+        dots[currentImageIndex].classList.add('active');
+      }
+      
+      function nextImage() {
+        showImage(currentImageIndex + 1);
+      }
+      
+      function startInterval() {
+        interval = setInterval(nextImage, 5000); // 5 seconds per image
+      }
+      
+      function resetInterval() {
+        clearInterval(interval);
         startInterval();
-      });
-    }
-
-    // Call this function after initializing the main spaces slider
-    setupMultiImageSliders();
-
-    // Reviews Slider
-    const reviews = document.querySelectorAll('.review');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-    let currentReview = 0;
-    let reviewInterval;
-
-    function showReview(index) {
-      reviews.forEach(review => review.classList.remove('active'));
+      }
       
-      currentReview = (index + reviews.length) % reviews.length;
-      reviews[currentReview].classList.add('active');
-    }
-
-    function nextReview() {
-      showReview(currentReview + 1);
-    }
-
-    function prevReview() {
-      showReview(currentReview - 1);
-    }
-
-    function startReviewSlideShow() {
-      reviewInterval = setInterval(nextReview, 8000); // 8 seconds
-    }
-
-    // Pause on hover
-    const reviewsContainer = document.querySelector('.reviews-container');
-    reviewsContainer.addEventListener('mouseenter', () => clearInterval(reviewInterval));
-    reviewsContainer.addEventListener('mouseleave', startReviewSlideShow);
-
-    // Navigation controls
-    nextBtn.addEventListener('click', () => {
-      clearInterval(reviewInterval);
-      nextReview();
-      startReviewSlideShow();
+      // Pause on hover
+      slider.addEventListener('mouseenter', () => clearInterval(interval));
+      slider.addEventListener('mouseleave', startInterval);
+      
+      // Initialize
+      showImage(0);
+      startInterval();
     });
+  }
 
-    prevBtn.addEventListener('click', () => {
-      clearInterval(reviewInterval);
-      prevReview();
-      startReviewSlideShow();
-    });
+  // Call this function after initializing the main spaces slider
+  setupMultiImageSliders();
 
-    // Initialize reviews slider
-    showReview(0);
+  // Reviews Slider
+  const reviews = document.querySelectorAll('.review');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  let currentReview = 0;
+  let reviewInterval;
+
+  function showReview(index) {
+    reviews.forEach(review => review.classList.remove('active'));
+    
+    currentReview = (index + reviews.length) % reviews.length;
+    reviews[currentReview].classList.add('active');
+  }
+
+  function nextReview() {
+    showReview(currentReview + 1);
+  }
+
+  function prevReview() {
+    showReview(currentReview - 1);
+  }
+
+  function startReviewSlideShow() {
+    reviewInterval = setInterval(nextReview, 8000); // 8 seconds
+  }
+
+  // Pause on hover
+  const reviewsContainer = document.querySelector('.reviews-container');
+  reviewsContainer.addEventListener('mouseenter', () => clearInterval(reviewInterval));
+  reviewsContainer.addEventListener('mouseleave', startReviewSlideShow);
+
+  // Navigation controls
+  nextBtn.addEventListener('click', () => {
+    clearInterval(reviewInterval);
+    nextReview();
     startReviewSlideShow();
+  });
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 100,
-            behavior: 'smooth'
-          });
-        }
-      });
+  prevBtn.addEventListener('click', () => {
+    clearInterval(reviewInterval);
+    prevReview();
+    startReviewSlideShow();
+  });
+
+  // Initialize reviews slider
+  showReview(0);
+  startReviewSlideShow();
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
     });
+  });
 
-    // Form submission handling
-    const subscribeForm = document.querySelector('.footer-subscribe form');
-    if (subscribeForm) {
-      subscribeForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const emailInput = this.querySelector('input[type="email"]');
-        const email = emailInput.value.trim();
-        
-        if (email) {
-          // In a real implementation, you would send this to your server
-          alert('Thank you for subscribing! We\'ll keep you updated.');
-          emailInput.value = '';
-        } else {
-          alert('Please enter a valid email address.');
-        }
-      });
-    }
+  // Form submission handling
+  const subscribeForm = document.querySelector('.footer-subscribe form');
+  if (subscribeForm) {
+    subscribeForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const emailInput = this.querySelector('input[type="email"]');
+      const email = emailInput.value.trim();
+      
+      if (email) {
+        // In a real implementation, you would send this to your server
+        alert('Thank you for subscribing! We\'ll keep you updated.');
+        emailInput.value = '';
+      } else {
+        alert('Please enter a valid email address.');
+      }
+    });
+  }
 
-    // WhatsApp order button enhancement
-    document.addEventListener('click', function(e) {
-      const orderBtn = e.target.closest('.order-btn');
-      if (orderBtn) {
-        orderBtn.innerHTML = 'Ordering... <i class="fas fa-spinner fa-spin"></i>';
-        
-        // Simulate order processing (in real app this would be actual WhatsApp API call)
+  // WhatsApp order button enhancement
+  document.addEventListener('click', function(e) {
+    const orderBtn = e.target.closest('.order-btn');
+    if (orderBtn) {
+      orderBtn.innerHTML = 'Ordering... <i class="fas fa-spinner fa-spin"></i>';
+      
+      // Simulate order processing (in real app this would be actual WhatsApp API call)
+      setTimeout(() => {
+        orderBtn.innerHTML = 'Order Sent! <i class="fas fa-check"></i>';
         setTimeout(() => {
-          orderBtn.innerHTML = 'Order Sent! <i class="fas fa-check"></i>';
-          setTimeout(() => {
-            orderBtn.innerHTML = 'Order Now <i class="fas fa-arrow-right"></i>';
-          }, 2000);
-        }, 1500);
-      }
-    });
-
-    // Lazy loading for images
-    if ('IntersectionObserver' in window) {
-      const lazyImages = document.querySelectorAll('img[data-src]');
-      
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-            observer.unobserve(img);
-          }
-        });
-      });
-
-      lazyImages.forEach(img => {
-        imageObserver.observe(img);
-      });
-    }
-
-    // Animation on scroll
-    function animateOnScroll() {
-      const elements = document.querySelectorAll(
-        '.intro-section, .menu-section, .food-video-section, .why-choose, .bar-section, .experience-section'
-      );
-      
-      elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
-        
-        if (elementPosition < screenPosition) {
-          element.style.opacity = '1';
-          element.style.transform = 'translateY(0)';
-        }
-      });
-    }
-
-    // Set initial state for animated elements
-    document.querySelectorAll(
-      '.intro-section, .menu-section, .food-video-section, .why-choose, .bar-section, .experience-section'
-    ).forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-
-    // Initialize animations
-    window.addEventListener('load', animateOnScroll);
-    window.addEventListener('scroll', animateOnScroll);
-
-    // Video autoplay handling for mobile devices
-    const video = document.querySelector('.video-container video');
-    if (video) {
-      // Ensure video plays inline on iOS
-      video.setAttribute('playsinline', '');
-      video.setAttribute('muted', '');
-      
-      // Attempt to autoplay (may be blocked by browser)
-      const playPromise = video.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          // Autoplay was prevented, show fallback
-          video.controls = true;
-        });
-      }
+          orderBtn.innerHTML = 'Order Now <i class="fas fa-arrow-right"></i>';
+        }, 2000);
+      }, 1500);
     }
   });
+
+  // Lazy loading for images
+  if ('IntersectionObserver' in window) {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+          observer.unobserve(img);
+        }
+      });
+    });
+
+    lazyImages.forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
+
+  // Animation on scroll
+  function animateOnScroll() {
+    const elements = document.querySelectorAll(
+      '.intro-section, .menu-section, .food-video-section, .why-choose, .bar-section, .experience-section'
+    );
+    
+    elements.forEach(element => {
+      const elementPosition = element.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.3;
+      
+      if (elementPosition < screenPosition) {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }
+    });
+  }
+
+  // Set initial state for animated elements
+  document.querySelectorAll(
+    '.intro-section, .menu-section, .food-video-section, .why-choose, .bar-section, .experience-section'
+  ).forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+
+  // Initialize animations
+  window.addEventListener('load', animateOnScroll);
+  window.addEventListener('scroll', animateOnScroll);
+
+  // Video autoplay handling for mobile devices
+  const video = document.querySelector('.video-container video');
+  if (video) {
+    // Ensure video plays inline on iOS
+    video.setAttribute('playsinline', '');
+    video.setAttribute('muted', '');
+    
+    // Attempt to autoplay (may be blocked by browser)
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        // Autoplay was prevented, show fallback
+        video.controls = true;
+      });
+    }
+  }
+});
   </script>
 </body>
 </html>
