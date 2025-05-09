@@ -6,7 +6,7 @@
     <title>Rooms - Yellow Door Hotels</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-/* Reset and base styles */
+        /* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -141,64 +141,6 @@ body {
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
-/* Featured Section */
-.featured-section {
-    padding: 60px 5%;
-    background-color: #f9f9f9;
-}
-
-.featured-slider {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    max-width: 1200px;
-    margin: 0 auto;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.featured-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-.featured-slide.active {
-    opacity: 1;
-}
-
-.featured-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-}
-
-.featured-prev {
-    left: 20px;
-}
-
-.featured-next {
-    right: 20px;
-}
-
 /* Categories Section */
 .categories-section {
     padding: 80px 5%;
@@ -283,13 +225,6 @@ body {
 .all-rooms-section {
     padding: 80px 5%;
     background-color: #f9f9f9;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 50px;
-    color: #222;
 }
 
 .rooms-filter {
@@ -470,6 +405,24 @@ footer {
     line-height: 1.6;
 }
 
+.social-links a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #f8d56b;
+}
+
+.social-links i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
 .footer-contact {
     flex: 1;
     min-width: 250px;
@@ -618,10 +571,6 @@ footer {
         font-size: 40px;
     }
 
-    .featured-slider {
-        height: 350px;
-    }
-
     .categories-grid {
         grid-template-columns: 1fr;
     }
@@ -691,22 +640,14 @@ footer {
                 <img src="./img/amber3.jpg" alt="Yellow Door Hotels" class="mainframe-slide active">
                 <img src="./img/amber2bedroom1.jpg" alt="Yellow Door Hotels" class="mainframe-slide">
                 <img src="./img/premiumstudio1.jpg" alt="Yellow Door Hotels" class="mainframe-slide">
+                <img src="./img/lounge.jpg" alt="Hotel Lobby" class="mainframe-slide">
+                <img src="./img/room102.jpg" alt="Hotel Lounge" class="mainframe-slide">
+                <img src="./img/room1031.jpg" alt="Hotel Facilities" class="mainframe-slide">
                 <button class="mainframe-nav mainframe-prev">&#10094;</button>
                 <button class="mainframe-nav mainframe-next">&#10095;</button>
             </div>
         </section>
     </header>
-
-    <!-- Featured Image Section -->
-    <section class="featured-section">
-        <div class="featured-slider">
-            <img src="./img/lounge.jpg" alt="Hotel Lobby" class="featured-slide active">
-            <img src="./img/room102.jpg" alt="Hotel Lounge" class="featured-slide">
-            <img src="./img/room1031.jpg" alt="Hotel Facilities" class="featured-slide">
-            <button class="featured-nav featured-prev">&#10094;</button>
-            <button class="featured-nav featured-next">&#10095;</button>
-        </div>
-    </section>
 
     <!-- Room Categories Section -->
     <section class="categories-section">
@@ -762,15 +703,14 @@ footer {
     <section class="all-rooms-section">
         <h2 class="section-title">All Rooms</h2>
         <div class="rooms-filter">
-            <button class="filter-btn active" data-filter="all">All Rooms</button>
-            <button class="filter-btn" data-filter="studio">Studio</button>
+            <button class="filter-btn active" data-filter="studio">Studio</button>
             <button class="filter-btn" data-filter="premium">Premium Studio</button>
             <button class="filter-btn" data-filter="one-bedroom">1 Bedroom</button>
             <button class="filter-btn" data-filter="two-bedroom">2 Bedroom</button>
         </div>
         
         <div class="rooms-grid">
-            <!-- All Studio Rooms -->
+            <!-- Studio Rooms -->
             <div class="room-card" data-category="studio">
                 <div class="room-slides">
                     <img src="./img/canarystudio1.jpg" alt="Canary Studio" class="room-slide active">
@@ -911,17 +851,16 @@ footer {
                 </div>
             </div>
             
-            <!-- Premium Studio Rooms -->
-            <div class="room-card" data-category="premium">
+            <div class="room-card" data-category="studio">
                 <div class="room-slides">
-                    <img src="./img/premiumstudio1.jpg" alt="Premium Studio" class="room-slide active">
-                    <img src="./img/premiumstudio2.jpg" alt="Premium Studio" class="room-slide">
-                    <img src="./img/premiumstudio3.jpg" alt="Premium Studio" class="room-slide">
+                    <img src="./img/1room101.jpg" alt="Room 101" class="room-slide active">
+                    <img src="./img/2room101.jpg" alt="Room 101" class="room-slide">
+                    <img src="./img/3room101.jpg" alt="Room 101" class="room-slide">
                     <button class="room-nav room-prev">&#10094;</button>
                     <button class="room-nav room-next">&#10095;</button>
                 </div>
                 <div class="room-details">
-                    <h3 class="room-name">Premium Studio</h3>
+                    <h3 class="room-name">Room 101</h3>
                     <div class="room-features">
                         <div class="feature">
                             <i class="fas fa-bed"></i>
@@ -933,23 +872,192 @@ footer {
                         </div>
                         <div class="feature">
                             <i class="fas fa-ruler-combined"></i>
-                            <span>45 m²</span>
+                            <span>35 m²</span>
                         </div>
                     </div>
-                    <div class="room-price">150k <span class="price-period">/ night</span></div>
+                    <div class="room-price">90k <span class="price-period">/ night</span></div>
                 </div>
             </div>
             
-            <div class="room-card" data-category="premium">
+            <div class="room-card" data-category="studio">
                 <div class="room-slides">
-                    <img src="./img/deluxestudio1.jpg" alt="Deluxe Studio" class="room-slide active">
-                    <img src="./img/deluxestudio2.jpg" alt="Deluxe Studio" class="room-slide">
-                    <img src="./img/deluxestudio3.jpg" alt="Deluxe Studio" class="room-slide">
+                    <img src="./img/room102.jpg" alt="Room 102" class="room-slide active">
+                    <img src="./img/room1022.jpg" alt="Room 102" class="room-slide">
+                    <img src="./img/room1023.jpg" alt="Room 102" class="room-slide">
                     <button class="room-nav room-prev">&#10094;</button>
                     <button class="room-nav room-next">&#10095;</button>
                 </div>
                 <div class="room-details">
-                    <h3 class="room-name">Deluxe Studio</h3>
+                    <h3 class="room-name">Room 102</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>35 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">90k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="studio">
+                <div class="room-slides">
+                    <img src="./img/room1041.jpg" alt="Room 104" class="room-slide active">
+                    <img src="./img/room1042.jpg" alt="Room 104" class="room-slide">
+                    <img src="./img/room1043.jpg" alt="Room 104" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 104</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>35 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">90k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="studio">
+                <div class="room-slides">
+                    <img src="./img/room2021.jpg" alt="Room 202" class="room-slide active">
+                    <img src="./img/room2022.jpg" alt="Room 202" class="room-slide">
+                    <img src="./img/room2023.jpg" alt="Room 202" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 202</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>35 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">90k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="studio">
+                <div class="room-slides">
+                    <img src="./img/room2031.jpg" alt="Room 203" class="room-slide active">
+                    <img src="./img/room2032.jpg" alt="Room 203" class="room-slide">
+                    <img src="./img/room2033.jpg" alt="Room 203" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 203</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>35 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">90k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="studio">
+                <div class="room-slides">
+                    <img src="./img/room2041.jpg" alt="Room 204" class="room-slide active">
+                    <img src="./img/room2042.jpg" alt="Room 204" class="room-slide">
+                    <img src="./img/room2043.jpg" alt="Room 204" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 204</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>35 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">90k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="studio">
+                <div class="room-slides">
+                    <img src="./img/room2051.jpg" alt="Room 205" class="room-slide active">
+                    <img src="./img/room2052.jpg" alt="Room 205" class="room-slide">
+                    <img src="./img/room2053.jpg" alt="Room 205" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 205</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>35 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">90k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <!-- Premium Studio Rooms -->
+            <div class="room-card" data-category="premium">
+                <div class="room-slides">
+                    <img src="./img/premiumstudio1.jpg" alt="Premium Studio" class="room-slide active">
+                    <img src="./img/premiumstudio2.jpg" alt="Premium Studio" class="room-slide">
+                    <img src="./img/premiumstudio3.jpg" alt="Premium Studio" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Premium Studio</h3>
                     <div class="room-features">
                         <div class="feature">
                             <i class="fas fa-bed"></i>
@@ -1027,6 +1135,34 @@ footer {
             
             <div class="room-card" data-category="one-bedroom">
                 <div class="room-slides">
+                    <img src="./img/room106onebedroom1.jpg" alt="Room 106" class="room-slide active">
+                    <img src="./img/room106onebedroom2.jpg" alt="Room 106" class="room-slide">
+                    <img src="./img/room106onebedroom3.jpg" alt="Room 106" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 106</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>55 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">180k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="one-bedroom">
+                <div class="room-slides">
                     <img src="./img/room201onebedroom1.jpg" alt="Room 201" class="room-slide active">
                     <img src="./img/room201onebedroom2.jpg" alt="Room 201" class="room-slide">
                     <img src="./img/room201onebedroom3.jpg" alt="Room 201" class="room-slide">
@@ -1035,6 +1171,34 @@ footer {
                 </div>
                 <div class="room-details">
                     <h3 class="room-name">Room 201</h3>
+                    <div class="room-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bed</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>55 m²</span>
+                        </div>
+                    </div>
+                    <div class="room-price">180k <span class="price-period">/ night</span></div>
+                </div>
+            </div>
+            
+            <div class="room-card" data-category="one-bedroom">
+                <div class="room-slides">
+                    <img src="./img/room2061bedroom1.jpg" alt="Room 206" class="room-slide active">
+                    <img src="./img/room2061bedroom2.jpg" alt="Room 206" class="room-slide">
+                    <img src="./img/room2061bedroom3.jpg" alt="Room 206" class="room-slide">
+                    <button class="room-nav room-prev">&#10094;</button>
+                    <button class="room-nav room-next">&#10095;</button>
+                </div>
+                <div class="room-details">
+                    <h3 class="room-name">Room 206</h3>
                     <div class="room-features">
                         <div class="feature">
                             <i class="fas fa-bed"></i>
@@ -1109,34 +1273,6 @@ footer {
                     <div class="room-price">160k <span class="price-period">/ night</span></div>
                 </div>
             </div>
-            
-            <div class="room-card" data-category="two-bedroom">
-                <div class="room-slides">
-                    <img src="./img/royal2bedroom1.jpg" alt="Royal 2 Bedroom" class="room-slide active">
-                    <img src="./img/royal2bedroom2.jpg" alt="Royal 2 Bedroom" class="room-slide">
-                    <img src="./img/royal2bedroom3.jpg" alt="Royal 2 Bedroom" class="room-slide">
-                    <button class="room-nav room-prev">&#10094;</button>
-                    <button class="room-nav room-next">&#10095;</button>
-                </div>
-                <div class="room-details">
-                    <h3 class="room-name">Royal 2 Bedroom</h3>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>2 Beds</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-user-friends"></i>
-                            <span>4 Guests</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-ruler-combined"></i>
-                            <span>75 m²</span>
-                        </div>
-                    </div>
-                    <div class="room-price">160k <span class="price-period">/ night</span></div>
-                </div>
-            </div>
         </div>
     </section>
     
@@ -1146,16 +1282,22 @@ footer {
             <div class="footer-logo">
                 <img src="./img/ydprimarylogo.png" alt="Yellow Door Logo">
                 <p>Experience luxury and comfort like never before at Yellow Door Hotels. Your perfect stay begins here.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/yellowdoorhotels" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i> @yellowdoorhotels
+                    </a>
+                </div>
             </div>
             
             <div class="footer-contact">
                 <h3>Contact Us</h3>
                 <p>No 19 Thaba Tseka Street, Ademola Adetokunbo, Wuse 2, Abuja</p>
-                <p><strong>Phone:</strong> <a href="tel:+2348012345678">+234 801 234 5678</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+2347089999970">+234 708 999 9970</a></p>
                 <p><strong>Email:</strong> <a href="mailto:hello@yellowdoor.ng">hello@yellowdoor.ng</a></p>
                 <div class="footer-links">
                     <a href="faq.html">FAQ</a> | 
-                    <a href="terms.html">Terms and Conditions</a>
+                    <a href="https://docs.google.com/document/d/1aODb-UjxWG7h73SNSpduYQKwRmgYyU1i8cKL04X5rwM/edit?usp=drivesdk">Terms and Conditions</a>
+                    <a href="privacy.html">Privacy Policy</a>
                 </div>
             </div>
             
@@ -1210,45 +1352,6 @@ if (mainframeSlider) {
 
     // Start the interval
     startMainframeInterval();
-}
-
-// Featured Slider Functionality
-const featuredSlider = document.querySelector('.featured-slider');
-if (featuredSlider) {
-    const featuredSlides = featuredSlider.querySelectorAll('.featured-slide');
-    const featuredPrev = featuredSlider.querySelector('.featured-prev');
-    const featuredNext = featuredSlider.querySelector('.featured-next');
-    let currentFeaturedSlide = 0;
-    let featuredInterval;
-
-    function showFeaturedSlide(n) {
-        featuredSlides.forEach(slide => slide.classList.remove('active'));
-        currentFeaturedSlide = (n + featuredSlides.length) % featuredSlides.length;
-        featuredSlides[currentFeaturedSlide].classList.add('active');
-    }
-
-    function nextFeaturedSlide() {
-        showFeaturedSlide(currentFeaturedSlide + 1);
-    }
-
-    function startFeaturedInterval() {
-        featuredInterval = setInterval(nextFeaturedSlide, 8000); // 8 seconds
-    }
-
-    featuredPrev.addEventListener('click', () => {
-        clearInterval(featuredInterval);
-        showFeaturedSlide(currentFeaturedSlide - 1);
-        startFeaturedInterval();
-    });
-
-    featuredNext.addEventListener('click', () => {
-        clearInterval(featuredInterval);
-        showFeaturedSlide(currentFeaturedSlide + 1);
-        startFeaturedInterval();
-    });
-
-    // Start the interval
-    startFeaturedInterval();
 }
 
 // Category Sliders Functionality
